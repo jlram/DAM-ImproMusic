@@ -9,9 +9,7 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 ### Vamos a encontrar distintas áreas de Gestión en mi Aplicación:
 
-1. Gestión de usuarios
-
-[click on this link](#Área-de-gestión-de-usuarios)
+1. [Gestión de usuarios](#Área-de-gestión-de-usuarios)
 
 2. Gestión de canciones/bases musicales
 
