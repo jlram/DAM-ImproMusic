@@ -25,7 +25,7 @@ A continuación, procedo a un análisis algo más exhaustivo de cada una.
 
 #### Área de gestión de usuarios
 
-**Incluye los puntos 3 y 4 del proyecto.**
+&nbsp;&nbsp;&nbsp;&nbsp;**Incluye los puntos 3 y 4 del proyecto.**
 
 * Finalidad: Conservar las preferencias básicas que cada usuario pueda guardar. Diferenciar entre distintos tipos de usuario.
 Perfil básico de usuario. Lista de retos en los que participa.
