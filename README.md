@@ -49,7 +49,6 @@ Perfil básico de usuario. Lista de retos en los que participa.
 * Elementos: 
 	- Usuario
 		- RD1: Nombre de Usuario
-		- RD2: 
 	- Canciones:
 		- RD1: Nombre de la canción
 		- RD2: Artista
@@ -63,35 +62,53 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 * Elementos:
 	- Usuario
+		- RD1: Nombre de Usuario
 	- Reto
-	- Canciones (No estoy seguro)
+		- RD1: Nombre del Reto
+		- RD2: Fecha de creación del Reto
+		- RD3: Fecha de finalización del Reto
+		- RD4: Normativa
+	- Canción: 
+		- RD1: Nombre de la canción
 
 #### Área de gestión de votaciones:
 
 * Finalidad: Votar un reto. Observar votaciones del resto de usuarios.
 
 * Elementos: 
-	- Usuario
-	- Reto
-	- Canción
+	- Usuario: 
+		- RD1: Nombre de Usuario
+	- Reto: 
+		- RD1: Nombre del Reto
+	- Votación: 
+		- RD1: Fecha de votación
+
+	**Nota: Cada usuario podrá votar sólo una vez.**	
 
 #### Área de gestión de comentarios:
 
 * Finalidad: Comentar la participación de otros usuarios en un reto
 
 * Elementos: 
-	- Usuario
-	- Reto
-	- Canción
-	- Comentario
+	- Usuario:
+		- RD1: Nombre de Usuario
+	- Reto:
+		- RD1: Nombre del Reto
+	- Comentario: 
+		- RD1: Fecha
+		- RD2: Contenido
 
 #### Área de gestión de ganadores:
 
-* Finalidad: Marcar usuarios como ganadores de un reto
+* Finalidad: Marcar usuarios como ganadores de un reto.
 
 * Elementos:
-	- Usuario
-	- Reto
-	- Canción
+	- Usuario: 
+		- RD1: Nombre de Usuario
+	- Reto:
+		- RD2: Nombre del Reto
 
 	
+# Entidad-Relación
+
+### Modelo Entidad-Relación de mi proyecto:
