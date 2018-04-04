@@ -11,6 +11,8 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 1. Gestión de usuarios
 
+[click on this link](#área-de-gestión-de-usuarios)
+
 2. Gestión de canciones/bases musicales
 
 3. Gestión de retos
@@ -21,7 +23,7 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 A continuación, procedo a un análisis algo más exhaustivo de cada una.
 
-#### Área de gestión de usuarios:
+#### Área de gestión de usuarios
 
 * Finalidad: Conservar las preferencias básicas que cada usuario pueda guardar. Diferenciar entre distintos tipos de usuario.
 Perfil básico de usuario. Lista de retos en los que participa.
@@ -31,5 +33,31 @@ Perfil básico de usuario. Lista de retos en los que participa.
 	- Reto
 	- Preferencias
 
+#### Área de gestión de canciones/bases musicales:
+
+* Finalidad: Subir canciones, eliminar canciones, observar los retos vinculados a la misma.
+
+* Elementos: 
+	- Usuario
+	- Reto
+	- Canciones
+
+#### Área de gestión de retos:
+
+* Finalidad: Creación de retos, unirse a retos, dar reto por terminado, cerrar reto.
+
+* Elementos:
+	- Usuario
+	- Reto
+	- Canciones (No estoy seguro)
+
+#### Área de gestión de votaciones:
+
+* Finalidad: Votar un reto. Observar votaciones del resto de usuarios.
+
+* Elementos: 
+	- Usuario
+	- Reto
+	- Canción
 
 	
