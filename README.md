@@ -25,13 +25,22 @@ A continuación, procedo a un análisis algo más exhaustivo de cada una.
 
 #### Área de gestión de usuarios
 
+**Incluye los puntos 3 y 4 del proyecto.**
+
 * Finalidad: Conservar las preferencias básicas que cada usuario pueda guardar. Diferenciar entre distintos tipos de usuario.
 Perfil básico de usuario. Lista de retos en los que participa.
 
 * Elementos: 
 	- Usuario
+
+		- RD1: Nombre de Usuario
+		- RD2: Preferencias
+		- RD3: Foto de perfil
+		- RD4: Fecha Registro
+		- RD5: Tipo de Usuario
 	- Reto
-	- Preferencias
+
+		- RD1: Nombre del Reto
 
 #### Área de gestión de canciones/bases musicales:
 
@@ -39,8 +48,14 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 * Elementos: 
 	- Usuario
-	- Reto
-	- Canciones
+		- RD1: Nombre de Usuario
+		- RD2: 
+	- Canciones:
+		- RD1: Nombre de la canción
+		- RD2: Artista
+		- RD3: Álbum
+		- RD4: Género
+		- RD5: Duración
 
 #### Área de gestión de retos:
 
