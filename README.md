@@ -9,14 +9,27 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 ### Vamos a encontrar distintas áreas de Gestión en mi Aplicación:
 
-* Gestión de usuarios
+1. Gestión de usuarios
 
-* Gestión de canciones/bases musicales
+2. Gestión de canciones/bases musicales
 
-* Gestión de retos
+3. Gestión de retos
 
-* Gestión de votaciones
+4. Gestión de votaciones
 
-* Gestión de comentarios
+5. Gestión de comentarios
+
+A continuación, procedo a un análisis algo más exhaustivo de cada una.
+
+#### Área de gestión de usuarios:
+
+* Finalidad: Conservar las preferencias básicas que cada usuario pueda guardar. Diferenciar entre distintos tipos de usuario.
+Perfil básico de usuario. Lista de retos en los que participa.
+
+* Elementos: 
+	- Usuario
+	- Reto
+	- Preferencias
+
 
 	
