@@ -7,7 +7,7 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 # Análisis de las áreas
 
-### Vamos a encontrar distintas áreas de Gestión en mi Aplicación:
+#### Vamos a encontrar distintas áreas de Gestión en mi Aplicación:
 
 1. [Gestión de usuarios](#Área-de-gestión-de-usuarios)
 
@@ -23,7 +23,7 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 A continuación, procedo a un análisis algo más exhaustivo de cada una.
 
-#### Área de gestión de usuarios
+### Área de gestión de usuarios
 
 &nbsp;&nbsp;&nbsp;&nbsp;**Incluye los puntos 3 y 4 del proyecto.**
 
@@ -42,7 +42,7 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 		- RD1: Nombre del Reto
 
-#### Área de gestión de canciones/bases musicales:
+### Área de gestión de canciones/bases musicales:
 
 * Finalidad: Subir canciones, eliminar canciones, observar los retos vinculados a la misma.
 
@@ -56,7 +56,7 @@ Perfil básico de usuario. Lista de retos en los que participa.
 		- RD4: Género
 		- RD5: Duración
 
-#### Área de gestión de retos:
+### Área de gestión de retos:
 
 * Finalidad: Creación de retos, unirse a retos, dar reto por terminado, cerrar reto.
 
@@ -71,7 +71,7 @@ Perfil básico de usuario. Lista de retos en los que participa.
 	- Canción: 
 		- RD1: Nombre de la canción
 
-#### Área de gestión de votaciones:
+### Área de gestión de votaciones:
 
 * Finalidad: Votar un reto. Observar votaciones del resto de usuarios.
 
@@ -85,7 +85,7 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 	**Nota: Cada usuario podrá votar sólo una vez.**	
 
-#### Área de gestión de comentarios:
+### Área de gestión de comentarios:
 
 * Finalidad: Comentar la participación de otros usuarios en un reto
 
@@ -98,7 +98,7 @@ Perfil básico de usuario. Lista de retos en los que participa.
 		- RD1: Fecha
 		- RD2: Contenido
 
-#### Área de gestión de ganadores:
+### Área de gestión de ganadores:
 
 * Finalidad: Marcar usuarios como ganadores de un reto.
 
