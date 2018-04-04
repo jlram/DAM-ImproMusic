@@ -1,29 +1,29 @@
-create table User (
+create table Musician (
 	ID int auto_increment primary key,
-	username varchar2(15),
-	password varchar2(15),
+	username varchar(15),
+	password varchar(15),
 	log_date date,
-	user_type varchar2(10),
+	user_type varchar(10),
 	id_pic int
 );
 
 create table Song (
 	ID int auto_increment primary key,
-	name varchar2(25),
-	author varchar2(25),
-	album varchar2(25),
-	genre varchar2(15),
+	name varchar(25),
+	author varchar(25),
+	album varchar(25),
+	genre varchar(15),
 	duration int
 );
 
 create table Challenge (
 	ID int auto_increment primary key,
-	name varchar2(25),
+	name varchar(25),
 	ID_song int,
 	creat_date date,
 	fin_date date,
 	descr text,
-	foreign key (ID_songD) references Song(ID)
+	foreign key (ID_song) references Song(ID)
 );
 
 create table Comment (
