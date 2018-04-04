@@ -11,7 +11,7 @@ Coding this Android App I'll try to help musicians with their experience practis
 
 1. Gestión de usuarios
 
-[click on this link](#xd)
+[click on this link](#Área-de-gestión-de-usuarios)
 
 2. Gestión de canciones/bases musicales
 
@@ -22,8 +22,6 @@ Coding this Android App I'll try to help musicians with their experience practis
 5. Gestión de comentarios
 
 A continuación, procedo a un análisis algo más exhaustivo de cada una.
-
-### xd
 
 #### Área de gestión de usuarios
 
