@@ -1,9 +1,9 @@
 # DAM-ImproMusic
 
-Final project for Multi-Platform Application Development Degree (DAM)
+Proyecto final para el CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM)
 
-Coding this Android App I'll try to help musicians with their experience practising at home, including musical background, metronome or tuner.
-**I'll start working on this in March.** 
+Con esta aplicación Android intentaré ayudar a músicos en su experiencia practicando en casa, incluyendo bases musicales y la opción de poder
+participar en retos junto a otros usuarios para aportarse entre todos en el mundo de la improvisación.
 
 # Análisis de las áreas
 
