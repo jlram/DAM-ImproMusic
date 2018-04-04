@@ -5,19 +5,21 @@ Final project for Multi-Platform Application Development Degree (DAM)
 Coding this Android App I'll try to help musicians with their experience practising at home, including musical background, metronome or tuner.
 **I'll start working on this in March.** 
 
-# Punto 3: Análisis de las áreas
+# Análisis de las áreas
 
 ### Vamos a encontrar distintas áreas de Gestión en mi Aplicación:
 
 1. [Gestión de usuarios](#Área-de-gestión-de-usuarios)
 
-2. Gestión de canciones/bases musicales
+2. [Gestión de canciones/bases musicales](#Área-de-gestión-de-cancionesbases-musicales)
 
-3. Gestión de retos
+3. [Gestión de retos](#Área-de-gestión-de-retos)
 
-4. Gestión de votaciones
+4. [Gestión de votaciones](#Área-de-gestión-de-votaciones)
 
-5. Gestión de comentarios
+5. [Gestión de comentarios](#Área-de-gestión-de-comentarios)
+
+6. [Gestión de ganadores](#Área-de-gestión-de-ganadores)
 
 A continuación, procedo a un análisis algo más exhaustivo de cada una.
 
@@ -54,6 +56,25 @@ Perfil básico de usuario. Lista de retos en los que participa.
 * Finalidad: Votar un reto. Observar votaciones del resto de usuarios.
 
 * Elementos: 
+	- Usuario
+	- Reto
+	- Canción
+
+#### Área de gestión de comentarios:
+
+* Finalidad: Comentar la participación de otros usuarios en un reto
+
+* Elementos: 
+	- Usuario
+	- Reto
+	- Canción
+	- Comentario
+
+#### Área de gestión de ganadores:
+
+* Finalidad: Marcar usuarios como ganadores de un reto
+
+* Elementos:
 	- Usuario
 	- Reto
 	- Canción
