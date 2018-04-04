@@ -124,5 +124,5 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 ### Modelo Entidad-Relación de mi proyecto:
 
-![imagen](https://i.imgur.com/ZDUbIMM.png)
+![imagen](https://i.imgur.com/heTBqyy.png)
 
