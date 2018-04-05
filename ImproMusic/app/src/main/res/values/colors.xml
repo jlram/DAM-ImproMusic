@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- COLORES DE ANDROID -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- PALETA ELEGIDA POR MI -->
+
+    <color name="Negro">#00120b</color>
+    <color name="VerdeOscuro">#35605a</color>
+    <color name="VerdeClaro">#8eb19d</color>
+    <color name="AzulClaro">#c4e0f9</color>
+    <color name="Blanco">#d8e4ff</color>
+
 </resources>
