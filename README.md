@@ -137,4 +137,4 @@ Perfil básico de usuario. Lista de retos en los que participa.
 - Columbia Blue: #c4e0f9
 - Azureish White: #d8e4ff
 
-![color_palette](https://i.imgur.com/WL9Nt4C.png)
+![color_palette](https://i.imgur.com/KVVtcsE.png)
