@@ -124,7 +124,7 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 ### Modelo Entidad-Relación de mi proyecto:
 
-![imagen](https://i.imgur.com/heTBqyy.png)
+![imagen](https://i.imgur.com/8aOKZEw.png)
 
 #### Una vez hecho este esquema, he realizado las tablas en [SQL](database.sql) para trabajar con ellas en mi aplicación
 
