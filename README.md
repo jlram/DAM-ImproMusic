@@ -128,3 +128,13 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 #### Una vez hecho este esquema, he realizado las tablas en [SQL](database.sql) para trabajar con ellas en mi aplicación
 
+
+# Paleta de colores elegida para la aplicación:
+
+- Rich Black: #00120b
+- Hunter Green: #35605a
+- Dark Sea Green: #8eb19d
+- Columbia Blue: #c4e0f9
+- Azureish White: #d8e4ff
+
+![color_palette](https://i.imgur.com/WL9Nt4C.png)
