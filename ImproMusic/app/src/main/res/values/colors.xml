@@ -8,9 +8,9 @@
     <!-- PALETA ELEGIDA POR MI -->
 
     <color name="Negro">#00120b</color>
-    <color name="VerdeOscuro">#35605a</color>
-    <color name="VerdeClaro">#8eb19d</color>
-    <color name="AzulClaro">#c4e0f9</color>
+    <color name="Verde">#339989</color>
+    <color name="AzulOscuro">#2d3141</color>
+    <color name="AzulClaro">#6e99c9</color>
     <color name="Blanco">#d8e4ff</color>
 
 </resources>
