@@ -132,9 +132,9 @@ Perfil básico de usuario. Lista de retos en los que participa.
 # Paleta de colores elegida para la aplicación:
 
 - Rich Black: #00120b
-- Hunter Green: #35605a
-- Dark Sea Green: #8eb19d
-- Columbia Blue: #c4e0f9
+- Zomp: #339989
+- Gunmetal: #2d3142
+- Cerulean Frost: #6e99c9
 - Azureish White: #d8e4ff
 
-![color_palette](https://i.imgur.com/KVVtcsE.png)
+![color_palette](https://i.imgur.com/ugem46M.png)
