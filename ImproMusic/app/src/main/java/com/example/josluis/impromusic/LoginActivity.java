@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,64 +32,101 @@ public class LoginActivity extends AppCompatActivity {
     TextView mTextViewSignUp;
     TextView mTextViewInv;
 
+    EditText mEditTextUser;
+    EditText mEditTextPwd;
+
     Button mButtonLogin;
 
     String URLConsulta;
+
+    JsonArrayRequest consulta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Toast.makeText(this, "Por favor, inicia sesión", Toast.LENGTH_SHORT).show();
+        mImageView      = (ImageView) findViewById(R.id.imgLogin);
 
-        mImageView = (ImageView) findViewById(R.id.imgLogin);
-
-        mTextView = (TextView) findViewById(R.id.textLogin);
-        mTextView2 = (TextView) findViewById(R.id.textInfo);
+        mTextView       = (TextView) findViewById(R.id.textLogin);
+        mTextView2      = (TextView) findViewById(R.id.textInfo);
         mTextViewSignUp = (TextView) findViewById(R.id.textSignUp);
-        mTextViewInv = (TextView) findViewById(R.id.textInv);
+        mTextViewInv    = (TextView) findViewById(R.id.textInv);
 
-        mButtonLogin = (Button) findViewById(R.id.buttonLogin);
+        mEditTextUser   = (EditText) findViewById(R.id.editTextUser);
+        mEditTextPwd    = (EditText) findViewById(R.id.editTextPass);
 
-        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=consulta";
+        mButtonLogin    = (Button) findViewById(R.id.buttonLogin);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
 
         /**
-         *
+         * Evento del botón para iniciar sesión. Primero, comprobará que los campos para realizar
+         * dicha acción no están vacios. Una vez comprobado, y suponiendo que no lo están, se
+         * mandará una consulta a nuestra base de datos comprobando que existe un usuario con
+         * los datos introducidos.
          */
-        final JsonArrayRequest consulta = new JsonArrayRequest (Request.Method.GET, URLConsulta, null, new Listener<JSONArray>() {
-
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    JSONObject c = response.getJSONObject(0);
-
-                    Toast.makeText(LoginActivity.this, "Bienvenido, " + c.getString("username"), Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
-                Toast.makeText(LoginActivity.this, "Error " + error.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Inicio de sesión", Toast.LENGTH_SHORT).show();
+                /**
+                 * Comprueba que los campos de nombre y contraseña no están vacios para continuar.
+                 */
+                if(mEditTextUser.getText().equals("")) {
+                    Toast.makeText(LoginActivity.this, "Rellena ambos campos", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=login&username=" +
+                            mEditTextUser.getText() +"&password=" + mEditTextPwd.getText();
+                    /**
+                     * Comprueba que el array que recogemos no está vacio. Si lo estuviese,
+                     * significaría que no existe un usuario con ese nombre y contraseña.
+                     *
+                     * En caso de no estar vacío, inicia sesión, da la bienvenida a nuestro usuario
+                     * y empieza la aplicación.
+                     */
+                    consulta = new JsonArrayRequest (Request.Method.GET, URLConsulta, null, new Listener<JSONArray>() {
+
+                        @Override
+
+                        public void onResponse(JSONArray response) {
+                            try {
+                                if (response.length() == 0) { //comprobación del array
+                                    mEditTextUser.setText("");
+                                    mEditTextPwd.setText("");
+                                    Toast.makeText(LoginActivity.this, "Introduce tus datos " +
+                                                                       "correctamente",
+                                    Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    //coge el objeto json del array
+                                    JSONObject c = response.getJSONObject(0);
+
+                                    Toast.makeText(LoginActivity.this, "Bienvenido, " +
+                                            c.getString("username"), Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(LoginActivity.this,
+                                            MainActivity.class));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(LoginActivity.this, "lmao", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO Auto-generated method stub
+                            Toast.makeText(LoginActivity.this, "Error " + error.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                //Añade la consulta a la RequestQueue
+                queue.add(consulta);
             }
         });
 
@@ -107,6 +145,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        queue.add(consulta);
     }
 }
