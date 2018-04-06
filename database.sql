@@ -1,8 +1,8 @@
-drop table if exists 'Musician';
-drop table if exists 'Song';
-drop table if exists 'Challenge';
-drop table if exists 'Comment';
-drop table if exists 'Participation';
+drop table if exists `Musician`;
+drop table if exists `Song`;
+drop table if exists `Challenge`;
+drop table if exists `Comment`;
+drop table if exists `Participation`;
 
 create table Musician (
 	ID int auto_increment primary key,
