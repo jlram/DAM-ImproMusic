@@ -123,6 +123,8 @@ Perfil básico de usuario. Lista de retos en los que participa.
 # Entidad-Relación
 
 ### Modelo Entidad-Relación de mi proyecto:
+5/04/2018 - Añadido Atributo ID Ganador en la tabla Reto y las relaciones reproduce entre Usuario y Canción
+			y Crea entre Usuario y Reto.
 
 ![imagen](https://i.imgur.com/8aOKZEw.png)
 
