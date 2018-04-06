@@ -1,0 +1,18 @@
+la ip del servidor o localhost
+
+localhost/MINI_apijson/usuarios.php?accion=consulta
+
+localhost/MINI_apijson/usuarios.php?accion=insertar&user=PEPE&pass=123
+
+localhost/MINI_apijson/usuarios.php?accion=actualizar&user=PEPE&pass=otropass
+
+localhost/MINI_apijson/usuarios.php?accion=borrar&user=PEPE
+
+
+EN EL XAMPP PARA VERSE DESDE LA RED LOCAL BUSCAR en 
+
+C:\xampp\apache\conf\extra 
+
+el fichero httpd-xampp.conf 
+
+Quitar la linea Require Local casi al final del fichero (linea 122 creo)
