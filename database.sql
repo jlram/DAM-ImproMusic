@@ -52,3 +52,5 @@ create table Participation(
 	foreign key (ID_chall) references Challenge(ID),
 	constraint PK_participation primary key (id_musician, id_chall)
 );
+
+insert into `Musician` values (null, 'admin', 'admin', '2018-04-05', 'admin', '2');
