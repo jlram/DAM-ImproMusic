@@ -9,6 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 public class LoginActivity extends AppCompatActivity {
 
     ImageView mImageView;
@@ -20,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button mButtonLogin;
 
-
+    String URLConsulta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +51,40 @@ public class LoginActivity extends AppCompatActivity {
         mTextViewInv = (TextView) findViewById(R.id.textInv);
 
         mButtonLogin = (Button) findViewById(R.id.buttonLogin);
+
+        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=consulta";
+
+        final RequestQueue queue = Volley.newRequestQueue(this);
+
+        /**
+         *
+         */
+        final JsonArrayRequest consulta = new JsonArrayRequest (Request.Method.GET, URLConsulta, null, new Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONObject c = response.getJSONObject(0);
+
+                    Toast.makeText(LoginActivity.this, "Bienvenido, " + c.getString("username"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                Toast.makeText(LoginActivity.this, "Error " + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +108,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        queue.add(consulta);
     }
 }
