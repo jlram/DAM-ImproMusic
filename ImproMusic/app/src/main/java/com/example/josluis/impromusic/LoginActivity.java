@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 /**
                  * Comprueba que los campos de nombre y contraseña no están vacios para continuar.
                  */
-                if(mEditTextUser.getText().equals("")) {
+                if(mEditTextUser.getText().equals("") || mEditTextPwd.getText().equals("")) {
                     Toast.makeText(LoginActivity.this, "Rellena ambos campos", Toast.LENGTH_SHORT).show();
 
                 } else {

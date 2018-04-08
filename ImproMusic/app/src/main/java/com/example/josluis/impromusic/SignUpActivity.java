@@ -63,26 +63,24 @@ public class SignUpActivity extends AppCompatActivity {
         mBtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SignUpActivity.this, "Sign UP", Toast.LENGTH_SHORT).show();
 
                 /**
-                 * Comprueba que los campos de nombre y contraseña no están vacios para continuar.
-                 * asdasdasdas
+                 * Comprueba que los campos de nombre y contraseñas no están vacios para continuar.
                  */
-                if(mEditTextUser.getText().equals("")) {
+                if(mEditTextUser.getText().equals("")|| mEditTextPWD.getText().equals("") || mEditTextPWD2.getText().equals("")) {
                     Toast.makeText(SignUpActivity.this, "Rellena ambos campos", Toast.LENGTH_SHORT).show();
 
                 } else {
 
+                    //Genera una fecha con el formato de mySQL server
                     android.text.format.DateFormat df = new android.text.format.DateFormat();
 
                     fecha = df.format("yyyy-MM-dd", new Date());
 
+                    //Consulta que llama al método insertar de nuestra API JSON
                     URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=insertar&username=" +
-                            mEditTextUser.getText() +"&password=" + mEditTextPWD.getText() + "&logdate = " + fecha;
-                    /**
-                    TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO4HEad
-                     */
+                            mEditTextUser.getText() +"&password=" + mEditTextPWD.getText() + "&logdate= " + fecha;
+
                     consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONObject>() {
 
                         @Override
@@ -90,17 +88,18 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
 
+                                //Pasa a boolean el valor obtenido de estado
                                 boolean registrado = Boolean.parseBoolean(response.getString("estado"));
 
                                 if (registrado) {
                                     Toast.makeText(SignUpActivity.this, "gogogo", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(SignUpActivity.this, "????????????????", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpActivity.this, "Ha habido un error intentando registrarte", Toast.LENGTH_SHORT).show();
                                 }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                Toast.makeText(SignUpActivity.this, "lmao", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Ha habido un error intentando registrarte", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }, new Response.ErrorListener() {
