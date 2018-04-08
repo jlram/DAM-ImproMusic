@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                Toast.makeText(LoginActivity.this, "lmao", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Ha habido un error iniciando sesión", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }, new Response.ErrorListener() {
@@ -134,7 +134,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-                Toast.makeText(LoginActivity.this, "Registrarme", Toast.LENGTH_SHORT).show();
             }
         });
 

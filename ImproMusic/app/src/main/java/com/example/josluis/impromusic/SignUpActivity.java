@@ -72,60 +72,65 @@ public class SignUpActivity extends AppCompatActivity {
 
                 } else {
 
-                    //Genera una fecha con el formato de mySQL server
-                    android.text.format.DateFormat df = new android.text.format.DateFormat();
+                    if (!mEditTextPWD.getText().toString().equals(mEditTextPWD2.getText().toString())) {
+                        Toast.makeText(SignUpActivity.this, mEditTextPWD.getText() + " " + mEditTextPWD2.getText(), Toast.LENGTH_SHORT).show();
+                        mEditTextPWD.setText("");
+                        mEditTextPWD2.setText("");
 
-                    fecha = df.format("yyyy-MM-dd", new Date());
+                        Toast.makeText(SignUpActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //Genera una fecha con el formato de mySQL server
+                        android.text.format.DateFormat df = new android.text.format.DateFormat();
 
-                    //Consulta que llama al método insertar de nuestra API JSON
-                    URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=insertar&username=" +
-                            mEditTextUser.getText() +"&password=" + mEditTextPWD.getText() + "&logdate= " + fecha;
+                        fecha = df.format("yyyy-MM-dd", new Date());
 
-                    consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONObject>() {
+                        //Consulta que llama al método insertar de nuestra API JSON
+                        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=insertar&username=" +
+                                mEditTextUser.getText() + "&password=" + mEditTextPWD.getText() + "&logdate= " + fecha;
 
-                        @Override
+                        consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONObject>() {
 
-                        public void onResponse(JSONObject response) {
-                            try {
+                            @Override
 
-                                //Pasa a boolean el valor obtenido de estado
-                                boolean registrado = Boolean.parseBoolean(response.getString("estado"));
+                            public void onResponse(JSONObject response) {
+                                try {
 
-                                if (registrado) {
-                                    Toast.makeText(SignUpActivity.this, "gogogo", Toast.LENGTH_SHORT).show();
-                                } else {
+                                    //Pasa a boolean el valor obtenido de estado
+                                    boolean registrado = Boolean.parseBoolean(response.getString("estado"));
+
+                                    if (registrado) {
+                                        Toast.makeText(SignUpActivity.this, "¡Gracias por registrarte!", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        Toast.makeText(SignUpActivity.this, "Ha habido un error intentando registrarte", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                     Toast.makeText(SignUpActivity.this, "Ha habido un error intentando registrarte", Toast.LENGTH_SHORT).show();
                                 }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(SignUpActivity.this, "Ha habido un error intentando registrarte", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    }, new Response.ErrorListener() {
+                        }, new Response.ErrorListener() {
 
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // TODO Auto-generated method stub
-                            Toast.makeText(SignUpActivity.this, "Error " + error.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // TODO Auto-generated method stub
+                                Toast.makeText(SignUpActivity.this, "Error " + error.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        //Añade la consulta a la RequestQueue
+                        queue.add(consulta);
+                    }
                 }
-                //Añade la consulta a la RequestQueue
-                queue.add(consulta);
-
-
             }
         });
 
         mTextViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                finish();
             }
         });
-
-
     }
 }
