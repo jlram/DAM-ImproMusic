@@ -67,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 /**
                  * Comprueba que los campos de nombre y contraseña no están vacios para continuar.
+                 * asdasdasdas
                  */
                 if(mEditTextUser.getText().equals("")) {
                     Toast.makeText(SignUpActivity.this, "Rellena ambos campos", Toast.LENGTH_SHORT).show();
