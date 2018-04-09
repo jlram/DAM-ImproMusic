@@ -54,3 +54,4 @@ create table Participation(
 );
 
 insert into `Musician` values (null, 'admin', 'admin', '2018-04-05', 'admin', '2');
+insert into `Musician` values (2, 'invitado', 'invitado', '2018-04-09', 'invitado', '1');
