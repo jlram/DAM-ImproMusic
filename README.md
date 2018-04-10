@@ -7,7 +7,7 @@ participar en retos junto a otros usuarios para aportarse entre todos en el mund
 
 ## Análisis de las áreas
 
-### Este apartado está mejor explicado [aqui](Abril.md).
+Este apartado está mejor explicado [aqui](Abril.md).
 
 1. Gestión de usuarios
 
@@ -23,5 +23,17 @@ participar en retos junto a otros usuarios para aportarse entre todos en el mund
 
 ## Base de datos
 
-### Más [aquí](Abril.md#modelo-entidad-relación-de-mi-proyecto)
+La aplicación se basa en una base relacional, cuyo esquema de Entidad-Relación se encuentra [aqui](Abril.md#modelo-entidad-relación-de-mi-proyecto)
 
+En base a ese equema, he realizado un paso a tablas de MySQL representado en el archivo [database.sql](database.sql).
+Tambien se encuentra un usuario admin y un usuario invitado para poder arrancar la aplicación desde cero.
+
+## Paleta de colores
+
+- Rich Black: #00120b
+- Zomp: #339989
+- Gunmetal: #2d3142
+- Cerulean Frost: #6e99c9
+- Azureish White: #d8e4ff
+
+![color_palette](https://i.imgur.com/ugem46M.png)

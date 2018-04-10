@@ -1,3 +1,5 @@
+Documento entregado para revisión el 5/04/2018
+
 # Análisis de las áreas
 
 #### Vamos a encontrar distintas áreas de Gestión en mi Aplicación:
@@ -122,14 +124,3 @@ Perfil básico de usuario. Lista de retos en los que participa.
 ![imagen](https://i.imgur.com/8aOKZEw.png)
 
 #### Una vez hecho este esquema, he realizado las tablas en [SQL](database.sql) para trabajar con ellas en mi aplicación
-
-
-# Paleta de colores elegida para la aplicación:
-
-- Rich Black: #00120b
-- Zomp: #339989
-- Gunmetal: #2d3142
-- Cerulean Frost: #6e99c9
-- Azureish White: #d8e4ff
-
-![color_palette](https://i.imgur.com/ugem46M.png)
