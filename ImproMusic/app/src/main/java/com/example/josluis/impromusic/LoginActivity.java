@@ -17,6 +17,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.josluis.impromusic.Tablas.Musician;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     String URLConsulta;
 
     JsonArrayRequest consulta;
+
+    static Musician usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                                             c.getString("username"), Toast.LENGTH_SHORT).show();
 
                                     startActivity(new Intent(LoginActivity.this,
-                                            MainActivity.class));
+                                            Main2Activity.class));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -140,7 +143,8 @@ public class LoginActivity extends AppCompatActivity {
         mTextViewInv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Invitado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, Main2Activity.class));
+            usuario = new Musician();
             }
         });
 
