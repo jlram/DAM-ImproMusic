@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/Verde"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.josluis.impromusic.Main2Activity"
+    tools:context="com.example.josluis.impromusic.MainActivity"
     tools:showIn="@layout/app_bar_main2"
     app:backgroundTint="@android:color/transparent">
 

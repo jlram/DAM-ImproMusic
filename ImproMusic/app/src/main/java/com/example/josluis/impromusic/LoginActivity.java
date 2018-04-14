@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                                             usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
                                     startActivity(new Intent(LoginActivity.this,
-                                            Main2Activity.class));
+                                            MainActivity.class));
 
                                     BackGroundTask task = new BackGroundTask(LoginActivity.this);
                                     task.execute();
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
         mTextViewInv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, Main2Activity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 BackGroundTask task = new BackGroundTask(LoginActivity.this);
                 task.execute();
                 usuario = new Musician();
