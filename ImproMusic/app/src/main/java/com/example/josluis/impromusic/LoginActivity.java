@@ -17,6 +17,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.josluis.impromusic.ASyncTask.BackGroundTask;
 import com.example.josluis.impromusic.Tablas.Musician;
 
 import org.json.JSONArray;
@@ -107,11 +108,18 @@ public class LoginActivity extends AppCompatActivity {
                                     //coge el objeto json del array
                                     JSONObject c = response.getJSONObject(0);
 
+                                    usuario = new Musician(c.getInt("ID"), c.getString("username"),
+                                            c.getString("password"), c.getString("log_date"),
+                                            c.getString("user_type"), c.getInt("id_pic"));
+
                                     Toast.makeText(LoginActivity.this, "Bienvenido, " +
-                                            c.getString("username"), Toast.LENGTH_SHORT).show();
+                                            usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
                                     startActivity(new Intent(LoginActivity.this,
                                             Main2Activity.class));
+
+                                    BackGroundTask task = new BackGroundTask(LoginActivity.this);
+                                    task.execute();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -143,8 +151,13 @@ public class LoginActivity extends AppCompatActivity {
         mTextViewInv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(LoginActivity.this, Main2Activity.class));
-            usuario = new Musician();
+                startActivity(new Intent(LoginActivity.this, Main2Activity.class));
+                BackGroundTask task = new BackGroundTask(LoginActivity.this);
+                task.execute();
+                usuario = new Musician();
+                Toast.makeText(LoginActivity.this, "Bienvenido, " +
+                        usuario.getUsername(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
