@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,11 @@ import com.example.josluis.impromusic.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Actividad de Edición de Perfil, en la que el usuario
+ * podrá cambiar su contraseña o foto de perfil, haciendo
+ * uso de nuestra API JSON.
+ */
 public class EditProfileActivity extends AppCompatActivity {
 
     ImageView mImageView;
@@ -42,6 +48,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
     JsonObjectRequest consulta;
 
+    ImageButton mImageGhost;
+    ImageButton mImageRock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +68,14 @@ public class EditProfileActivity extends AppCompatActivity {
         mTxtUser = (TextView) findViewById(R.id.textViewProfileUser);
         mTxtPass = (TextView) findViewById(R.id.textViewProfilePass);
 
-        final RequestQueue queue = Volley.newRequestQueue(this);
+        mImageGhost = (ImageButton) findViewById(R.id.imageButtonGhost);
+        mImageRock = (ImageButton) findViewById(R.id.imageButtonRock);
 
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        /**
+         * Comprueba que id de foto tiene para poner una u otra
+         * por defecto en la actividad.
+         */
         if (usuario.getId_pic() == 1) {
             mImageView.setImageResource(R.drawable.avatar1);
         } else if (usuario.getId_pic() == 2) {
@@ -69,11 +84,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
         mEditTextUser.setText(usuario.getUsername());
 
-
+        /**
+         * Evento del botón que muestra las dos opciones de imagenes de perfil que
+         * ofrece nuestra aplicación.
+         */
         mBtnPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //cambiar la foto de perfil
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
 
                 builder.setTitle("Escoge una foto para tu perfil")
@@ -81,11 +98,25 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
 
+                mImageGhost.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(EditProfileActivity.this, "xd", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 dialog.show();
 
+                //TODO 1 -> Hacer evento para las dos opciones que muestra nuestro layout. JSON.
             }
         });
 
+        /**
+         * Evento del botón para cambiar la contraseña. Nuestro programa comprobará que se ha
+         * introducido correctamente la nueva contraseña dos veces.
+         * Una vez hecho, tendrá que hacer una llamada a nuestra API JSON para cambiarlo en la base
+         * de datos.
+         */
         mBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
