@@ -123,4 +123,4 @@ Perfil básico de usuario. Lista de retos en los que participa.
 
 ![imagen](https://i.imgur.com/8aOKZEw.png)
 
-#### Una vez hecho este esquema, he realizado las tablas en [SQL](database.sql) para trabajar con ellas en mi aplicación
+#### Una vez hecho este esquema, he realizado las tablas en [SQL](../BD/database.sql) para trabajar con ellas en mi aplicación
