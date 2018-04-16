@@ -55,3 +55,7 @@ create table Participation(
 
 insert into `Musician` values (null, 'admin', 'admin', '2018-04-05', 'admin', '2');
 insert into `Musician` values (2, 'invitado', 'invitado', '2018-04-09', 'invitado', '1');
+
+insert into `Song` values (null, 'Cancion 1', 'Autor 1', 'Album 1', 'Rock', 3);
+insert into `Song` values (null, 'Cancion 2', 'Autor 2', 'Album 2', 'Pop', 4);	
+	
