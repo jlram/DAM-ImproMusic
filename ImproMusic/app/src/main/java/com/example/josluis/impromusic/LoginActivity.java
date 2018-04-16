@@ -1,5 +1,6 @@
 package com.example.josluis.impromusic;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.josluis.impromusic.ASyncTask.BackGroundTask;
+import com.example.josluis.impromusic.ASyncTasks.BackGroundTask;
 import com.example.josluis.impromusic.Tablas.Musician;
 
 import org.json.JSONArray;
@@ -45,8 +46,11 @@ public class LoginActivity extends AppCompatActivity {
 
     static Musician usuario;
 
+    public static Activity fa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        fa = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -120,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     BackGroundTask task = new BackGroundTask(LoginActivity.this);
                                     task.execute();
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -157,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                 usuario = new Musician();
                 Toast.makeText(LoginActivity.this, "Bienvenido, " +
                         usuario.getUsername(), Toast.LENGTH_SHORT).show();
-
+                finish();
             }
         });
 

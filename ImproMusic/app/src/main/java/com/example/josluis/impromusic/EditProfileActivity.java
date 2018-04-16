@@ -98,13 +98,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
 
-                mImageGhost.setOnClickListener(new View.OnClickListener() {
+                /*mImageGhost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(EditProfileActivity.this, "xd", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+                */
                 dialog.show();
 
                 //TODO 1 -> Hacer evento para las dos opciones que muestra nuestro layout. JSON.

@@ -1,4 +1,4 @@
-package com.example.josluis.impromusic.ASyncTask;
+package com.example.josluis.impromusic.ASyncTasks;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

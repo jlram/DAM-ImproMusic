@@ -6,16 +6,16 @@
 
     <ImageButton
         android:id="@+id/imageButtonGhost"
-        android:layout_width="180dp"
-        android:layout_height="181dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/avatar1" />
 
     <ImageButton
         android:id="@+id/imageButtonRock"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/avatar2" />
