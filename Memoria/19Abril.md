@@ -19,8 +19,6 @@ Una vez establecida esta paleta de colores [en mi proyecto android](/ImproMusic/
 
 <img src="https://i.imgur.com/7DmYd4v.png" width="40%"> <img src="https://i.imgur.com/QAwcewR.png" width="40%">
 
-<img src="https://i.imgur.com/7DmYd4v.png" width="40%">
-
 # Actividad de SignUp
 
 #### Si accedemos a esta Actividad, se mostrará una opción de crear un nombre de usuario junto a su contraseña. Se pedirá al usuario que introduzca dos veces su contraseña para demostrar que está seguro de crearla.
