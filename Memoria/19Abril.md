@@ -37,4 +37,4 @@ Una vez establecida esta paleta de colores [en mi proyecto android](/ImproMusic/
 
 #### Esta Actividad dará la oportunidad al usuario de cambiar de contraseña o de foto de perfil. En el caso de cambiar de contraseña, tendrá que introducir dos veces la nueva contraseña a modo de confirmación. Si lo que desea cambiar es la foto de perfil, se mostrará un cuadro de diálogo con las dos opciones que da la aplicación para personalizar nuestro icono.
 
-<img src="https://imgur.com/undefined" width="40%">
+<img src="https://i.imgur.com/zD9wha9.png" width="40%">
