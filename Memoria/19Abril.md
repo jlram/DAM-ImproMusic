@@ -15,4 +15,4 @@ Una vez establecida esta paleta de colores [en mi proyecto android](/ImproMusic/
 
 # Actividad de Login
 
-![actividad de login](https://i.imgur.com/7DmYd4v.png)
+<img src="https://i.imgur.com/7DmYd4v.png" width="40%"> <img src="https://i.imgur.com/QAwcewR.png" width="40%">
