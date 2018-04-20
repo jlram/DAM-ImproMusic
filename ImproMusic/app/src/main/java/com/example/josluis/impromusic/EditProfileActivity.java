@@ -1,5 +1,7 @@
 package com.example.josluis.impromusic;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,6 +53,7 @@ public class EditProfileActivity extends AppCompatActivity {
     ImageButton mImageGhost;
     ImageButton mImageRock;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,9 +121,10 @@ public class EditProfileActivity extends AppCompatActivity {
          * de datos.
          */
         mBtnSave.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                if (mEditTextPWD.getText().toString().equals(mEditTextPWD2.getText().toString())) {
+                if (mEditTextPWD.getText().toString().equals(mEditTextPWD2.getText().toString()) && !mEditTextPWD.getText().toString().trim().equals("")) {
                     //guardar cambios
                     URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=actualizar&username=" +
                             usuario.getUsername() + "&password=" + mEditTextPWD.getText();
@@ -135,6 +139,10 @@ public class EditProfileActivity extends AppCompatActivity {
                                 if (modificado) {
                                     Toast.makeText(EditProfileActivity.this, "Usuario modificado con éxito", Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    mEditTextPWD.setText("");
+                                    mEditTextPWD2.setText("");
+
                                     Toast.makeText(EditProfileActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
@@ -148,10 +156,21 @@ public class EditProfileActivity extends AppCompatActivity {
                             Toast.makeText(EditProfileActivity.this, "Error Response", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+
                     queue.add(consulta);
+
+                } else if (mEditTextPWD.getText().toString().trim().equals("")){
+                    Toast.makeText(EditProfileActivity.this, "Error. No puedes introducir una contraseña vacía.", Toast.LENGTH_SHORT).show();
+                } else if(!mEditTextPWD.getText().toString().equals(mEditTextPWD2.getText().toString())) {
+                    Toast.makeText(EditProfileActivity.this, "Error. Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(EditProfileActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show();
                 }
+
+                mEditTextPWD.setText("");
+                mEditTextPWD2.setText("");
+
             }
         });
 

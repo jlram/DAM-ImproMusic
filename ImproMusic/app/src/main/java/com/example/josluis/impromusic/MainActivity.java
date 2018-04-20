@@ -2,7 +2,9 @@ package com.example.josluis.impromusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -15,13 +17,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -105,7 +109,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_retos) {
 
         } else if (id == R.id.nav_perfil) {
-            startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
+            /**
+             * Comprueba que el ID no es el del usuario invitado (ID = 2)
+             */
+            if (usuario.getID() == 2) {
+                Toast.makeText(this, "¡Registrate para acceder a esta opcion!", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
+            }
         } else if (id == R.id.nav_config) {
 
         } else if (id == R.id.nav_compartir) {
