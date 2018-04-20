@@ -1,9 +1,14 @@
 package com.example.josluis.impromusic.Tablas;
 
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 /**
  * Created by jlram on 09/04/2018.
  */
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class Musician {
 
     private int ID;
@@ -12,6 +17,8 @@ public class Musician {
     private String log_date;
     private String user_type;
     private int id_pic;
+
+    Calendar calendar = Calendar.getInstance();
 
     public Musician(int ID, String username, String password, String log_date, String user_type, int id_pic) {
         this.ID = ID;
@@ -26,7 +33,7 @@ public class Musician {
         this.ID = 2;
         this.username = "invitado";
         this.password = "invitado";
-        this.log_date = "log_date";
+        this.log_date = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
         this.user_type = "invitado";
         this.id_pic = 1;
     }

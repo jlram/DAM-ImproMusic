@@ -2,6 +2,7 @@ package com.example.josluis.impromusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -162,7 +163,6 @@ public class LoginActivity extends AppCompatActivity {
                 usuario = new Musician();
                 Toast.makeText(LoginActivity.this, "Bienvenido, " +
                         usuario.getUsername(), Toast.LENGTH_SHORT).show();
-                finish();
             }
         });
 
