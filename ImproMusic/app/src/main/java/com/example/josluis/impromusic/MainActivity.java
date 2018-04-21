@@ -110,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         + usuario.getLog_date());
         nav_type.setText(usuario.getUser_type());
 
+        /**
+         * 
+         */
         listViewCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
