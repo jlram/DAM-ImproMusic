@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.josluis.impromusic.R;
+import com.example.josluis.impromusic.Tablas.Song;
 
 import java.util.ArrayList;
 
@@ -20,10 +22,10 @@ import java.util.ArrayList;
  * Created by jlram on 16/04/2018.
  */
 
-public class MainAdapter extends ArrayAdapter<String> {
+public class MainAdapter extends ArrayAdapter<Song> {
 
 
-    public MainAdapter(Context context, ArrayList<String> canciones) {
+    public MainAdapter(Context context, ArrayList<Song> canciones) {
         super(context, R.layout.listview_view, canciones);
     }
 
@@ -33,7 +35,8 @@ public class MainAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
-        String cancion = getItem(position);
+        String cancion = getItem(position).getName();
+        //Toast.makeText(getContext(), cancion, Toast.LENGTH_SHORT).show();
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
         ImageView foto = (ImageView) customView.findViewById(R.id.imageViewListaCancion);

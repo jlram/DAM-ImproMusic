@@ -42,15 +42,13 @@ import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    ListView listaCanciones;
-    ArrayList<String> nombreCanciones;
+    ListView listViewCanciones;
+    ArrayList<Song> listaCanciones;
     MainAdapter adapter;
 
     String URLConsulta;
 
     Request consulta;
-
-    static Song cancion;
 
     RequestQueue queue;
 
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        nombreCanciones = new ArrayList<>();
+        listaCanciones = new ArrayList<>();
 
         queue = Volley.newRequestQueue(this);
 
@@ -73,9 +71,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
          * asignamos nuestro adaptador.
          */
-        adapter = new MainAdapter(this, nombreCanciones);
-        listaCanciones = (ListView) findViewById(R.id.listViewCanciones);
-        listaCanciones.setAdapter(adapter);
+        //Toast.makeText(this, listaCanciones.get(0).getName(), Toast.LENGTH_SHORT).show();
+        adapter = new MainAdapter(this, listaCanciones);
+        listViewCanciones = (ListView) findViewById(R.id.listViewCanciones);
+        listViewCanciones.setAdapter(adapter);
 
         /**
          * Metodo que le da funcionalidad al botón flotante. Haremos una llamada a la actividad de sugerencias.
@@ -141,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
  /*
-
     NO ESTOY SEGURO PERO CREO QUE ESTO ES USELESS AF
 
     @Override
@@ -213,8 +211,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject json = response.getJSONObject(i);
-                        nombreCanciones.add(json.getString("name"));
+                        JSONObject obj = response.getJSONObject(i);
+                        Song temp = new Gson().fromJson(String.valueOf(obj), Song.class);
+                        listaCanciones.add(temp);
+                        
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(MainActivity.this, "Error de la base de datos.", Toast.LENGTH_SHORT).show();
