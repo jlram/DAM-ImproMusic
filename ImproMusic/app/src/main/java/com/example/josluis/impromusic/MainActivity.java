@@ -16,13 +16,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.josluis.impromusic.Adapters.MainAdapter;
+import com.example.josluis.impromusic.Tablas.Song;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView listaCanciones;
+    ArrayList<String> nombreCanciones;
+    MainAdapter adapter;
+
+    String URLConsulta;
+
+    Request consulta;
+
+    static Song cancion;
+
+    RequestQueue queue;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -31,8 +61,25 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
+        nombreCanciones = new ArrayList<>();
+
+        queue = Volley.newRequestQueue(this);
+
+        //Método declarado abajo.
+        cargaCanciones();
+
+        /**
+         * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
+         * asignamos nuestro adaptador.
+         */
+        adapter = new MainAdapter(this, nombreCanciones);
+        listaCanciones = (ListView) findViewById(R.id.listViewCanciones);
+        listaCanciones.setAdapter(adapter);
+
+        /**
+         * Metodo que le da funcionalidad al botón flotante. Haremos una llamada a la actividad de sugerencias.
+         */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,12 +101,18 @@ public class MainActivity extends AppCompatActivity
         View hView =  navigationView.getHeaderView(0);
         TextView nav_text = (TextView)hView.findViewById(R.id.headerText);
         TextView nav_type = (TextView)hView.findViewById(R.id.headerType);
+
+        /**
+         * Muestra la información principal de nuestro usuario.
+         */
         nav_text.setText(usuario.getUsername() + "\n\nMiembro desde: "
                         + usuario.getLog_date());
         nav_type.setText(usuario.getUser_type());
-
     }
 
+    /**
+     * Método que se llama al pulsón el botón de navegacion BACK.
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,12 +128,21 @@ public class MainActivity extends AppCompatActivity
         LoginActivity.fa.finish();
     }
 
+    /**
+     * Evento de creación del menú.
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
+
+ /*
+
+    NO ESTOY SEGURO PERO CREO QUE ESTO ES USELESS AF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -96,7 +158,14 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
+    /**
+     * Evento de selección de items en la barra lateral.
+     * Cada opción llevará al usuario a una nueva actividad.
+     * @param item
+     * @return
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -117,6 +186,7 @@ public class MainActivity extends AppCompatActivity
             } else {
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
             }
+
         } else if (id == R.id.nav_config) {
 
         } else if (id == R.id.nav_compartir) {
@@ -126,5 +196,37 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * Método propio en el que hago una consulta a la base de datos pidiendo todas las canciones,
+     * las cuales se añadirán a nuestro ArrayList para más tarde mostrarse en el ListView de nuestra
+     * actividad principal.
+     */
+    public void cargaCanciones() {
+
+        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=consultaCanciones";
+
+        consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject json = response.getJSONObject(i);
+                        nombreCanciones.add(json.getString("name"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this, "Error de la base de datos.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(consulta);
     }
 }

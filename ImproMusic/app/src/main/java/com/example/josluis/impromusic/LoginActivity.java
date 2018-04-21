@@ -3,6 +3,8 @@ package com.example.josluis.impromusic;
 import android.app.Activity;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -98,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                      */
                     consulta = new JsonArrayRequest (Request.Method.GET, URLConsulta, null, new Listener<JSONArray>() {
 
+                        @RequiresApi(api = Build.VERSION_CODES.N)
                         @Override
 
                         public void onResponse(JSONArray response) {

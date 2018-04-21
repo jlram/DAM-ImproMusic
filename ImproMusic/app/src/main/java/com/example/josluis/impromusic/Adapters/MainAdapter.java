@@ -4,29 +4,44 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.josluis.impromusic.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by jlram on 16/04/2018.
  */
 
-public class MainAdapter extends ArrayAdapter {
+public class MainAdapter extends ArrayAdapter<String> {
 
-    private final Activity context;
 
-    private final Integer[] imageIDArray;
+    public MainAdapter(Context context, ArrayList<String> canciones) {
+        super(context, R.layout.listview_view, canciones);
+    }
 
-    private final String[] textArray;
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
-    public MainAdapter(Activity context, String[] textArrayParam, Integer[] imageIDArrayParam, Activity context1, Integer[] imageIDArray, String[] textArray){
+        String cancion = getItem(position);
 
-        super(context , R.layout.listview_view, textArrayParam);
+        TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
+        ImageView foto = (ImageView) customView.findViewById(R.id.imageViewListaCancion);
 
-        this.context = context;
-        this.imageIDArray = imageIDArrayParam;
+        nombre.setText(cancion);
 
-        this.textArray = textArrayParam;
+        foto.setImageResource(R.drawable.pop);
+
+        return customView;
     }
 }

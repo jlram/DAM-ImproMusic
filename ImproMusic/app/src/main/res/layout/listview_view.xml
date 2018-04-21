@@ -7,14 +7,14 @@
     android:weightSum="1">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewListaCancion"
         android:layout_width="82dp"
         android:layout_height="83dp"
         android:padding="5dp"
         app:srcCompat="@drawable/pop" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewNombreCancion"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
