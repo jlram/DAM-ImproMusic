@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_type.setText(usuario.getUser_type());
 
         /**
-         * 
+         * Evento que al seleccionar una canción, nos dirigimos a una nueva actividad en la que
+         * se mostrará información más detallada sobre la misma.
          */
         listViewCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //startActivity(new Intent(MainActivity.this, OCRActivity.class));
 
                 cancion = adapter.getItem(position);
                 startActivity(new Intent(MainActivity.this, SongActivity.class));
