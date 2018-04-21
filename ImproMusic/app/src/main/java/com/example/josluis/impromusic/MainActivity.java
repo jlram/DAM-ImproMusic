@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ import static com.example.josluis.impromusic.LoginActivity.usuario;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView listViewCanciones;
-    ArrayList<Song> listaCanciones;
+    static ArrayList<Song> listaCanciones;
     MainAdapter adapter;
 
     String URLConsulta;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Request consulta;
 
     RequestQueue queue;
+
+    static Song cancion;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
          * asignamos nuestro adaptador.
          */
-        //Toast.makeText(this, listaCanciones.get(0).getName(), Toast.LENGTH_SHORT).show();
         adapter = new MainAdapter(this, listaCanciones);
         listViewCanciones = (ListView) findViewById(R.id.listViewCanciones);
         listViewCanciones.setAdapter(adapter);
@@ -107,6 +109,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_text.setText(usuario.getUsername() + "\n\nMiembro desde: "
                         + usuario.getLog_date());
         nav_type.setText(usuario.getUser_type());
+
+        listViewCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //startActivity(new Intent(MainActivity.this, OCRActivity.class));
+
+                cancion = adapter.getItem(position);
+                startActivity(new Intent(MainActivity.this, SongActivity.class));
+            }
+        });
     }
 
     /**
@@ -214,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         JSONObject obj = response.getJSONObject(i);
                         Song temp = new Gson().fromJson(String.valueOf(obj), Song.class);
                         listaCanciones.add(temp);
-                        
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(MainActivity.this, "Error de la base de datos.", Toast.LENGTH_SHORT).show();
