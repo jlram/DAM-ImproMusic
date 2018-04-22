@@ -158,14 +158,16 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mTextViewInv.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                BackGroundTask task = new BackGroundTask(LoginActivity.this);
-                task.execute();
+
                 usuario = new Musician();
                 Toast.makeText(LoginActivity.this, "Bienvenido, " +
                         usuario.getUsername(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                BackGroundTask task = new BackGroundTask(LoginActivity.this);
+                task.execute();
             }
         });
 

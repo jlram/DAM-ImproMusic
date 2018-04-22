@@ -8,7 +8,7 @@
     tools:context="com.example.josluis.impromusic.CreateChallengeActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewCreateChall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
@@ -22,4 +22,94 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNombreChall"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="29dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerChall"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCreateChall"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <Spinner
+        android:id="@+id/spinnerChall"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="184dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <EditText
+        android:id="@+id/editTextDescrChall"
+        android:layout_width="0dp"
+        android:layout_height="247dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginStart="34dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Añade una descripción a tu reto..."
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <CalendarView
+        android:id="@+id/calendarViewChall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCreateChall"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButtonChall"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:clickable="true"
+        app:backgroundTint="@color/AzulClaro"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/editTextDescrChall"
+        app:srcCompat="@android:drawable/ic_media_next"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
 </android.support.constraint.ConstraintLayout>
