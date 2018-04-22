@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.josluis.impromusic.ASyncTasks.BackGroundTask;
 import com.example.josluis.impromusic.Tablas.Musician;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,11 +52,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public static Activity fa;
 
+    RequestQueue queue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //told ya
         fa = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        queue  = Volley.newRequestQueue(this);
 
         mImageView      = (ImageView) findViewById(R.id.imgLogin);
 
@@ -68,8 +74,6 @@ public class LoginActivity extends AppCompatActivity {
         mEditTextPwd    = (EditText) findViewById(R.id.editTextPass);
 
         mButtonLogin    = (Button) findViewById(R.id.buttonLogin);
-
-        final RequestQueue queue = Volley.newRequestQueue(this);
 
         /**
          * Evento del botón para iniciar sesión. Primero, comprobará que los campos para realizar
@@ -150,6 +154,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Al pulsar sobre este texto, iremos a la actividad de SignUp.
+         */
         mTextViewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,18 +164,56 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Método para iniciar sesión como invitado. Haremos una llamada a la función loginInvitado
+         * de nuestra API JSON.
+         */
         mTextViewInv.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+                URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=login&username=invitado&password=invitado";
 
-                usuario = new Musician();
-                Toast.makeText(LoginActivity.this, "Bienvenido, " +
-                        usuario.getUsername(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                BackGroundTask task = new BackGroundTask(LoginActivity.this);
-                task.execute();
+                consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Listener<JSONArray>() {
+                    /**
+                     * En caso de obtener respuesta, crearemos un usuario con los atributos recibidos en nuestro
+                     * JSON. Realmente este método está hecho de una manera más simplificada que el login normal,
+                     * por lo que si es necesario consultar documentación, mejor hacerlo más arriba.
+                     * @param response
+                     */
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONObject c = response.getJSONObject(0);
+
+                            usuario = new Musician(c.getInt("ID"), c.getString("username"),
+                                    c.getString("password"), c.getString("log_date"),
+                                    c.getString("user_type"), c.getInt("id_pic"));
+
+                            Toast.makeText(LoginActivity.this, "Bienvenido, " +
+                                    usuario.getUsername(), Toast.LENGTH_SHORT).show();
+
+                            startActivity(new Intent(LoginActivity.this,
+                                    MainActivity.class));
+
+                            BackGroundTask task = new BackGroundTask(LoginActivity.this);
+                            task.execute();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this, "Error " + error.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //Añade consulta
+                queue.add(consulta);
             }
+
         });
 
     }

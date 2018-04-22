@@ -42,6 +42,11 @@ public class SongActivity extends AppCompatActivity {
 
         textViewInfo.setText("Artista: " + cancion.getAuthor() + "\nAlbum: " + cancion.getAlbum());
 
+        /**
+         * Evento para parar o reproducir nuestra canción.
+         *
+         * Además, alternaremos el símbolo del botón.
+         */
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +60,9 @@ public class SongActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Al pulsar este botón iremos a la actividad de creación de reto.
+         */
         buttonCrearReto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
