@@ -80,15 +80,15 @@
         android:id="@+id/textInfo"
         android:layout_width="0dp"
         android:layout_height="27dp"
-        android:text="No tienes cuenta? "
-        android:textSize="16sp"
-        app:layout_constraintRight_toLeftOf="@+id/textSignUp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
         android:layout_marginTop="30dp"
+        android:text="¿No tienes cuenta?"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@+id/buttonLogin"
+        app:layout_constraintRight_toLeftOf="@+id/textSignUp"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/buttonLogin" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <TextView
         android:id="@+id/textSignUp"
