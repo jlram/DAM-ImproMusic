@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageViewListaCancion"
-        android:layout_width="82dp"
-        android:layout_height="83dp"
+        android:layout_width="77dp"
+        android:layout_height="79dp"
         android:padding="5dp"
         app:srcCompat="@drawable/pop" />
 
