@@ -43,7 +43,7 @@ public class MainAdapter extends ArrayAdapter<Song> {
 
         nombre.setText(cancion);
 
-        foto.setImageResource(R.drawable.pop);
+        foto.setImageResource(R.drawable.music);
 
         return customView;
     }

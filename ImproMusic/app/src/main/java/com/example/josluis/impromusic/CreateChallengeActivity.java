@@ -54,6 +54,11 @@ public class CreateChallengeActivity extends AppCompatActivity {
 
         rellenaSpinner();
 
+
+
+
+
+
         /**
          * Botón que nos hará ir al siguiente fragment.
          *

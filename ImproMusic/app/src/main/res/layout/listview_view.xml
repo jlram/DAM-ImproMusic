@@ -23,5 +23,6 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="{nombre_cancion}"
-        android:textColor="@color/Negro" />
+        android:textColor="@color/Negro"
+        android:textSize="24sp" />
 </LinearLayout>
