@@ -36,7 +36,6 @@ public class MainAdapter extends ArrayAdapter<Song> {
         View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
         String cancion = getItem(position).getName();
-        //Toast.makeText(getContext(), cancion, Toast.LENGTH_SHORT).show();
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
         ImageView foto = (ImageView) customView.findViewById(R.id.imageViewListaCancion);

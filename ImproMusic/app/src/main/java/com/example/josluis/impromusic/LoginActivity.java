@@ -190,6 +190,7 @@ public class LoginActivity extends AppCompatActivity {
                                     c.getString("password"), c.getString("log_date"),
                                     c.getString("user_type"), c.getInt("id_pic"));
 
+                            Toast.makeText(LoginActivity.this, response + "", Toast.LENGTH_SHORT).show();
                             Toast.makeText(LoginActivity.this, "Bienvenido, " +
                                     usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
@@ -201,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(LoginActivity.this, "Ha habido un error iniciando sesión", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {

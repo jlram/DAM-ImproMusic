@@ -70,13 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Método declarado abajo.
         cargaCanciones();
 
-        /**
-         * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
-         * asignamos nuestro adaptador.
-         */
-        adapter = new MainAdapter(this, listaCanciones);
-        listViewCanciones = (ListView) findViewById(R.id.listViewCanciones);
-        listViewCanciones.setAdapter(adapter);
 
         /**
          * Metodo que le da funcionalidad al botón flotante. Haremos una llamada a la actividad de sugerencias.
@@ -229,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         JSONObject obj = response.getJSONObject(i);
                         Song temp = new Gson().fromJson(String.valueOf(obj), Song.class);
                         listaCanciones.add(temp);
+                        Toast.makeText(MainActivity.this, temp.getName(), Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -242,6 +236,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show();
             }
         });
+
         queue.add(consulta);
+
+        /**
+         * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
+         * asignamos nuestro adaptador.
+         */
+        adapter = new MainAdapter(this, listaCanciones);
+        listViewCanciones = (ListView) findViewById(R.id.listViewCanciones);
+        listViewCanciones.setAdapter(adapter);
+        Toast.makeText(this, "Se ha metido", Toast.LENGTH_SHORT).show();
+
     }
 }
