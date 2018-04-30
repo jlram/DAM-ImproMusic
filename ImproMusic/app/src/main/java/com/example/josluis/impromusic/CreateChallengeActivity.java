@@ -1,10 +1,10 @@
 package com.example.josluis.impromusic;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
@@ -13,11 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.josluis.impromusic.Adapters.MainAdapter;
-
 import java.util.ArrayList;
 
-import static com.example.josluis.impromusic.LoginActivity.usuario;
 import static com.example.josluis.impromusic.MainActivity.listaCanciones;
 
 public class CreateChallengeActivity extends AppCompatActivity {
