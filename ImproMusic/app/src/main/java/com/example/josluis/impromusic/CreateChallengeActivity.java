@@ -67,11 +67,9 @@ public class CreateChallengeActivity extends AppCompatActivity {
         fecha = df.format("yyyy-MM-dd", new Date());
 
         /**
-         * Botón que nos hará ir al siguiente fragment.
-         *
-         *   String nombre = editTextNombreChall.getText().toString();
-         *  String descripcion = editTextDescrChall.getText().toString();
-         *   int ID_musc = usuario.getID();
+         * Al pulsar el botón haremos llamada a la función de crear reto
+         * la cual creará un objeto Challenge en nuestra base de datos.
+         * Obtenemos la información de los elementos de la actividad.
          *
          */
         fabChall.setOnClickListener(new View.OnClickListener() {
