@@ -7,14 +7,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+import static com.example.josluis.impromusic.LoginActivity.usuario;
+import static com.example.josluis.impromusic.MainActivity.cancion;
 import static com.example.josluis.impromusic.MainActivity.listaCanciones;
 
 public class CreateChallengeActivity extends AppCompatActivity {
@@ -25,9 +30,17 @@ public class CreateChallengeActivity extends AppCompatActivity {
     EditText editTextDescrChall;
 
     Spinner spinnerChall;
+    Spinner spinnerDate;
+
     ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapterFecha;
     ArrayList<String> arraySpinner;
-    CalendarView calendarViewChall;
+
+    String URLConsulta;
+    Request Consulta;
+    RequestQueue queue;
+
+    CharSequence fecha;
 
     FloatingActionButton fabChall;
 
@@ -42,19 +55,16 @@ public class CreateChallengeActivity extends AppCompatActivity {
         editTextDescrChall = (EditText) findViewById(R.id.editTextDescrChall);
 
         spinnerChall = (Spinner) findViewById(R.id.spinnerChall);
-
-        calendarViewChall = (CalendarView) findViewById(R.id.calendarViewChall);
+        spinnerDate = (Spinner) findViewById(R.id.spinnerDate);
 
         fabChall = (FloatingActionButton) findViewById(R.id.floatingActionButtonChall);
 
         arraySpinner = new ArrayList<>();
 
-        rellenaSpinner();
+        rellenaSpinners();
 
-
-
-
-
+        android.text.format.DateFormat df = new android.text.format.DateFormat();
+        fecha = df.format("yyyy-MM-dd", new Date());
 
         /**
          * Botón que nos hará ir al siguiente fragment.
@@ -69,9 +79,10 @@ public class CreateChallengeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            //TODO -> CAMBIAR DE FRAGMENT
-                Toast.makeText(CreateChallengeActivity.this, "cambio de fragment"
+                Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
                         , Toast.LENGTH_SHORT).show();
+
+                creaReto();
 
             }
         });
@@ -86,17 +97,35 @@ public class CreateChallengeActivity extends AppCompatActivity {
      * una vista para ver los items de una manera más clara y lo asignamos
      * a nuestro spinner.
      */
-    public void rellenaSpinner() {
+    public void rellenaSpinners() {
         for(int i = 0; i < listaCanciones.size(); i++) {
             arraySpinner.add(listaCanciones.get(i).getName());
         }
 
         adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, arraySpinner);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinnerChall.setAdapter(adapter);
+
+
+        adapterFecha = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.fechas));
+        adapterFecha.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDate.setAdapter(adapterFecha);
+
+    }
+
+    public void creaReto() {
+
+        android.text.format.DateFormat df = new android.text.format.DateFormat();
+        CharSequence fecha_fin = df.format("yyyy-MM-dd", new Date(30));
+
+        Toast.makeText(this, fecha_fin + "", Toast.LENGTH_SHORT).show();
+        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
+                editTextNombreChall.toString() + "&id_song=" + cancion.getID() +
+                "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
+                fecha_fin + "&descr=" + editTextDescrChall.getText().toString();
+
     }
 
 }

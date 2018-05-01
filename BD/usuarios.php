@@ -82,6 +82,19 @@ $conexion=Conectar($host,$user,$pass,$dbname);
       break;
 
 
+      /*CONSULTAS DE LA TABLA RETOS*/
+      case "crearReto":
+          $name=$_GET["name"];
+          $id_song=$_GET["id_song"];
+          $id_user=$_GET["id_user"];
+          $creat_date=$_GET["creat_date"];
+          $fin_date=$_GET["fin_date"];
+          $descr=$_GET["descr"];
+           $query="INSERT INTO Challenge(ID,name,ID_song,ID_musician, creat_date, fin_date, descr) values (null,'$name','$id_song','$id_user','$creat_date,'$fin_date', '$descr');";
+           mysqli_query($conexion,$query) or die("ERROR");
+           echo '{"estado":true}';
+      break;
+
     }
 
 ?>

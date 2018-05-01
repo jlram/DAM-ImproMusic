@@ -1,14 +1,11 @@
 package com.example.josluis.impromusic.Tablas;
 
 import android.icu.util.Calendar;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 
 /**
  * Created by jlram on 09/04/2018.
  */
 
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class Musician {
 
     private int ID;
