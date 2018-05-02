@@ -115,37 +115,40 @@ public class CreateChallengeActivity extends AppCompatActivity {
         spinnerDate.setAdapter(adapterFecha);
 
     }
-
     /**
-     * C
+     * Comprobamos que los campos de texto no estén ocupados, sustituimos los espacios por "-"
+     * para que no se altere la URL y creamos una consulta.
      */
     public void creaReto() {
-        android.text.format.DateFormat df = new android.text.format.DateFormat();
-        CharSequence fecha_fin = df.format("yyyy-MM-dd", new Date());
+        if (!editTextNombreChall.getText().toString().trim().equals("") ||
+                !editTextDescrChall.getText().toString().trim().equals("")) {
+            android.text.format.DateFormat df = new android.text.format.DateFormat();
+            CharSequence fecha_fin = df.format("yyyy-MM-dd", new Date());
 
-        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
-                editTextNombreChall.getText().toString() + "&id_song=" + cancion.getID() +
-                "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
-                fecha_fin + "&descr=" + editTextDescrChall.getText().toString();
+            URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
+                    editTextNombreChall.getText().toString() + "&id_song=" + cancion.getID() +
+                    "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
+                    fecha_fin + "&descr=" + editTextDescrChall.getText().toString();
 
-        System.out.println(URLConsulta);
+            consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null,
+                new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
+                            , Toast.LENGTH_SHORT).show();
 
-        consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null,
-            new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
-                        , Toast.LENGTH_SHORT).show();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CreateChallengeActivity.this, "Ha ocurrido un error"
-                        , Toast.LENGTH_SHORT).show();
-            }
-        });
-    queue.add(consulta);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(CreateChallengeActivity.this, "Ha ocurrido un error"
+                            , Toast.LENGTH_SHORT).show();
+                }
+            });
+            queue.add(consulta);
+        } else {
+            Toast.makeText(this, "Por favor, rellena los campos correctamente",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
-
 }
