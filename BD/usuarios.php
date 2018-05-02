@@ -90,7 +90,7 @@ $conexion=Conectar($host,$user,$pass,$dbname);
           $creat_date=$_GET["creat_date"];
           $fin_date=$_GET["fin_date"];
           $descr=$_GET["descr"];
-           $query="INSERT INTO Challenge(ID,name,ID_song,ID_musician, creat_date, fin_date, descr) values (null,'$name','$id_song','$id_user','$creat_date,'$fin_date', '$descr');";
+          $query="INSERT INTO Challenge values (null, '$name',$id_song,$id_user, null,'$creat_date','$fin_date', '$descr');";
            mysqli_query($conexion,$query) or die("ERROR");
            echo '{"estado":true}';
       break;
