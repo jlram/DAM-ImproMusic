@@ -14,6 +14,12 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +43,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
     ArrayList<String> arraySpinner;
 
     String URLConsulta;
-    Request Consulta;
+    Request consulta;
     RequestQueue queue;
 
     CharSequence fecha;
@@ -63,6 +69,8 @@ public class CreateChallengeActivity extends AppCompatActivity {
 
         rellenaSpinners();
 
+        queue = Volley.newRequestQueue(this);
+
         android.text.format.DateFormat df = new android.text.format.DateFormat();
         fecha = df.format("yyyy-MM-dd", new Date());
 
@@ -76,12 +84,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
-                        , Toast.LENGTH_SHORT).show();
-
                 creaReto();
-
             }
         });
 
@@ -113,17 +116,36 @@ public class CreateChallengeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * C
+     */
     public void creaReto() {
-
         android.text.format.DateFormat df = new android.text.format.DateFormat();
-        CharSequence fecha_fin = df.format("yyyy-MM-dd", new Date(30));
+        CharSequence fecha_fin = df.format("yyyy-MM-dd", new Date());
 
-        Toast.makeText(this, fecha_fin + "", Toast.LENGTH_SHORT).show();
         URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
-                editTextNombreChall.toString() + "&id_song=" + cancion.getID() +
+                editTextNombreChall.getText().toString() + "&id_song=" + cancion.getID() +
                 "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
                 fecha_fin + "&descr=" + editTextDescrChall.getText().toString();
 
+        System.out.println(URLConsulta);
+
+        consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null,
+            new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
+                        , Toast.LENGTH_SHORT).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CreateChallengeActivity.this, "Ha ocurrido un error"
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
+    queue.add(consulta);
     }
 
 }
