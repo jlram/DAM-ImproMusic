@@ -8,7 +8,8 @@ Documento entregado para revisión el día 03/05/2018
         
 # Actividad de reproducción de música
 ##### (Diseño básico)
-<img src="https://i.imgur.com/FdpuDIF.png" width="40%">
+<img src="https://i.imgur.com/FdpuDIF.png" width="40%">  
+
 #### Actividad en la cual vamos a ver la canción seleccionada en la vista de canciones. El usuario podrá reproducir o parar la canción, ver los retos que están asociados a la misma o crear uno nuevo desde esta canción. 
 
 
