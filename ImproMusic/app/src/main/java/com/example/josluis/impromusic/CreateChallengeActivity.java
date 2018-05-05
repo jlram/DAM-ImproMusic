@@ -167,7 +167,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
      */
     public void creaReto() {
         CharSequence fecha2 = cogeSpinner();
-        Toast.makeText(this, fecha2, Toast.LENGTH_SHORT).show();
+
             if (!isEmpty(editTextNombreChall) || //editTextNombreChall != null || editTextNombreChall.length() != 0 ||
                 !isEmpty(editTextDescrChall) || //editTextDescrChall != null || editTextDescrChall.length() != 0 ||
                 !fecha2.equals("ERROR")) {
