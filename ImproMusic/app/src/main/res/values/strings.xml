@@ -7,11 +7,11 @@
 
     <string name="action_settings">Settings</string>
 
-   <array name="fechas">
-       <item>Elige una duración...</item>
-       <item>24 Horas</item>
-       <item>3 Días</item>
-       <item>1 Semana</item>
-       <item>1 Mes</item>
-   </array>
+    <array name="fechas">
+        <item>Elige una duración...</item>
+        <item>24 Horas</item>
+        <item>3 Días</item>
+        <item>1 Semana</item>
+        <item>1 Mes</item>
+    </array>
 </resources>

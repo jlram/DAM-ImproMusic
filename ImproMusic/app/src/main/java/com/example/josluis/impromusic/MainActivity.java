@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_canciones) {
 
         } else if (id == R.id.nav_retos) {
-
+            startActivity(new Intent(MainActivity.this, ListChallengeActivity.class));
         } else if (id == R.id.nav_perfil) {
             /**
              * Comprueba que el ID no es el del usuario invitado (ID = 2)

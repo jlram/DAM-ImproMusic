@@ -61,5 +61,12 @@ public class SongActivity extends AppCompatActivity {
                 startActivity(new Intent(SongActivity.this, CreateChallengeActivity.class));
             }
         });
+
+        buttonVerRetos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SongActivity.this, ListChallengeActivity.class));
+            }
+        });
     }
 }

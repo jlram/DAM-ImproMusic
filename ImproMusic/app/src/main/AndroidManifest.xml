@@ -25,7 +25,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".SongActivity" />
-        <activity android:name=".CreateChallengeActivity"></activity>
+        <activity android:name=".CreateChallengeActivity" />
+        <activity android:name=".ListChallengeActivity"></activity>
     </application>
 
 </manifest>
