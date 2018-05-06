@@ -2,11 +2,10 @@ package com.example.josluis.impromusic;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,8 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                 /**
                  * Comprueba que los campos de nombre y contraseña no están vacios para continuar.
                  */
-                if(mEditTextUser.getText().equals("") || mEditTextPwd.getText().equals("")) {
-                    Toast.makeText(LoginActivity.this, "Rellena ambos campos", Toast.LENGTH_SHORT).show();
+                if(mEditTextUser.getText().toString().isEmpty() || mEditTextPwd.getText().toString().isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Por favor, rellena ambos campos", Toast.LENGTH_SHORT).show();
 
                 } else {
 
@@ -144,9 +143,10 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
+                    //Añade la consulta a la RequestQueue
+                    queue.add(consulta);
                 }
-                //Añade la consulta a la RequestQueue
-                queue.add(consulta);
+
             }
         });
 
