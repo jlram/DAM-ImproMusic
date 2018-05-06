@@ -168,43 +168,44 @@ public class CreateChallengeActivity extends AppCompatActivity {
     public void creaReto() {
         CharSequence fecha2 = cogeSpinner();
 
-            if (!isEmpty(editTextNombreChall) || //editTextNombreChall != null || editTextNombreChall.length() != 0 ||
-                !isEmpty(editTextDescrChall) || //editTextDescrChall != null || editTextDescrChall.length() != 0 ||
-                !fecha2.equals("ERROR")) {
+        if (editTextNombreChall.getText().toString().isEmpty() ||
+                editTextDescrChall.getText().toString().isEmpty() ||
+                fecha2.equals("ERROR")) {
 
-            URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
-                    editTextNombreChall.getText().toString() + "&id_song=" + cancion.getID() +
-                    "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
-                    fecha2 + "&descr=" + editTextDescrChall.getText().toString();
-
-            consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null,
-                new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
-                            , Toast.LENGTH_SHORT).show();
-
+                if (fecha2.equals("ERROR")) {
+                    Toast.makeText(this, "Por favor, elige una fecha.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Por favor, rellena todos los campos",
+                            Toast.LENGTH_SHORT).show();
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(CreateChallengeActivity.this, "Ha ocurrido un error"
-                            , Toast.LENGTH_SHORT).show();
-                }
-            });
-            queue.add(consulta);
+
         } else {
-            if (fecha2.equals("ERROR")) {
-                Toast.makeText(this, "Por favor, elige una fecha.",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Por favor, rellena los campos correctamente",
-                        Toast.LENGTH_SHORT).show();
-            }
+                URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
+                        editTextNombreChall.getText().toString() + "&id_song=" + cancion.getID() +
+                        "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
+                        fecha2 + "&descr=" + editTextDescrChall.getText().toString();
+
+                consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Toast.makeText(CreateChallengeActivity.this, "¡Tu reto ha sido creado!"
+                                        , Toast.LENGTH_SHORT).show();
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(CreateChallengeActivity.this, "Ha ocurrido un error"
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                });
+                queue.add(consulta);
         }
     }
 
-    private boolean isEmpty(EditText etText) {
+    private boolean estaVacio(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
 
