@@ -1,6 +1,7 @@
 package com.example.josluis.impromusic;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -91,7 +92,6 @@ public class CreateChallengeActivity extends AppCompatActivity {
                 creaReto();
             }
         });
-
     }
 
     /**
@@ -202,11 +202,9 @@ public class CreateChallengeActivity extends AppCompatActivity {
                     }
                 });
                 queue.add(consulta);
+
+            startActivity(new Intent(CreateChallengeActivity.this, ListChallengeActivity.class));
+            finish();
         }
     }
-
-    private boolean estaVacio(EditText etText) {
-        return etText.getText().toString().trim().length() == 0;
-    }
-
 }
