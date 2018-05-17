@@ -95,6 +95,13 @@ $conexion=Conectar($host,$user,$pass,$dbname);
            echo '{"estado":true}';
       break;
 
+      case "consultaRetos":
+          $query="SELECT * FROM Challenge";
+          $resultado=mysqli_query($conexion,$query) or die("ERROR");
+          $json=TABLA_A_JSON($resultado);
+          echo $json;
+      break;
+
     }
 
 ?>

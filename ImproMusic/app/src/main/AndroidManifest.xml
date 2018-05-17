@@ -26,7 +26,8 @@
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".SongActivity" />
         <activity android:name=".CreateChallengeActivity" />
-        <activity android:name=".ListChallengeActivity"></activity>
+        <activity android:name=".ListChallengeActivity" />
+        <activity android:name=".ChallengeActivity"></activity>
     </application>
 
 </manifest>

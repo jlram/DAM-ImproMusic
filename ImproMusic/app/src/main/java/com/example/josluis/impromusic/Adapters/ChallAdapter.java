@@ -23,17 +23,17 @@ public class ChallAdapter extends ArrayAdapter<Challenge> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.listviewchall_view, parent, false);
 
         String reto = getItem(position).getName();
         int id = getItem(position).getID_musician();
 
-        TextView nombre = customView.findViewById(R.id.textViewNombreChall);
-        TextView autor = customView.findViewById(R.id.textViewAutorChall);
+        TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreChall);
+        TextView autor = (TextView) customView.findViewById(R.id.textViewAutorChall);
 
         nombre.setText(reto);
+
         autor.setText("Creado por: \n" + id);
 
         return customView;

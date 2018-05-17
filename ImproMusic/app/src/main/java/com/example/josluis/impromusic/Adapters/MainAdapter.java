@@ -1,6 +1,5 @@
 package com.example.josluis.impromusic.Adapters;
 
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,12 +15,7 @@ import com.example.josluis.impromusic.Tablas.Song;
 
 import java.util.ArrayList;
 
-/**
- * Created by jlram on 16/04/2018.
- */
-
 public class MainAdapter extends ArrayAdapter<Song> {
-
 
     public MainAdapter(Context context, ArrayList<Song> canciones) {
         super(context, R.layout.listview_view, canciones);
@@ -34,7 +28,6 @@ public class MainAdapter extends ArrayAdapter<Song> {
         View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
         String cancion = getItem(position).getName();
-        //Toast.makeText(getContext(), cancion, Toast.LENGTH_SHORT).show();
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
         ImageView foto = (ImageView) customView.findViewById(R.id.imageViewListaCancion);
