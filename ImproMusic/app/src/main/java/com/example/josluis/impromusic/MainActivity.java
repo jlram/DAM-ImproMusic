@@ -68,7 +68,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         queue = Volley.newRequestQueue(this);
 
+        /**
+         * Marca como seleccionado el elemento "Canciones"
+         * de nuestro menú lateral.
+         */
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        /**
+         * Cambia la transparencia del menú.
+         */
+        navigationView.getBackground().setAlpha(200);
+
         //Método declarado abajo.
         cargaCanciones();
 

@@ -7,20 +7,48 @@
     android:background="@color/Verde"
     tools:context="com.example.josluis.impromusic.SongActivity">
 
+    <Button
+        android:id="@+id/buttonCrearReto"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="336dp"
+        android:background="@drawable/roundbutton"
+        android:text="Crear reto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <Button
+        android:id="@+id/buttonVerRetos"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="260dp"
+        android:background="@drawable/roundbutton"
+        android:text="Ver Retos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
     <TextView
         android:id="@+id/textViewCancion"
         android:layout_width="0dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="65dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="342dp"
         android:layout_marginLeft="65dp"
         android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="{nombre_cancion}"
         android:textColor="@color/Negro"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarCancion"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -48,58 +76,33 @@
 
     <ImageButton
         android:id="@+id/imageButtonMp3"
-        android:layout_width="52dp"
-        android:layout_height="42dp"
-        android:background="@drawable/roundbutton"
-        app:srcCompat="@android:drawable/ic_media_play"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginEnd="9dp"
-        app:layout_constraintRight_toLeftOf="@+id/seekBarCancion"
+        android:layout_width="161dp"
+        android:layout_height="65dp"
+        android:background="@drawable/circle_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="9dp" />
+        app:layout_constraintVertical_bias="0.944"
+        app:srcCompat="@android:drawable/ic_media_play"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <SeekBar
         android:id="@+id/seekBarCancion"
-        android:layout_width="228dp"
-        android:layout_height="41dp"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="116dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginStart="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="263dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="40dp" />
-
-    <Button
-        android:id="@+id/buttonCrearReto"
-        android:layout_width="136dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="76dp"
-        android:background="@drawable/roundbutton"
-        android:text="Crear reto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCancion"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
-
-    <Button
-        android:id="@+id/buttonVerRetos"
-        android:layout_width="136dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="180dp"
-        android:background="@drawable/roundbutton"
-        android:text="Ver retos"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
 </android.support.constraint.ConstraintLayout>
