@@ -50,12 +50,9 @@ public class ListChallengeActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        cargaRetos();
     }
 
     public void cargaRetos() {

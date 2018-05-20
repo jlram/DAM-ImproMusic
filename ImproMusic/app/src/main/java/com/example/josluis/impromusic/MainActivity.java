@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     static Song cancion;
 
+    NavigationView navigationView;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +64,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         listaCanciones = new ArrayList<>();
 
+        navigationView = findViewById(R.id.nav_view);
+
         queue = Volley.newRequestQueue(this);
 
+        navigationView.getMenu().getItem(0).setChecked(true);
         //Método declarado abajo.
         cargaCanciones();
 
@@ -71,9 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
          * asignamos nuestro adaptador.
          */
-        adapter = new MainAdapter(this, listaCanciones);
         listViewCanciones = (ListView) findViewById(R.id.listViewCanciones);
-        listViewCanciones.setAdapter(adapter);
 
         /**
          * Metodo que le da funcionalidad al botón flotante. Haremos una llamada a la actividad de sugerencias.
@@ -137,6 +140,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * Borro la actividad de login para evitar cerrar sesión sin querer.
          */
         LoginActivity.fa.finish();
+    }
+
+    @Override
+    protected void onPostResume() {
+        navigationView.getMenu().getItem(0).setChecked(true);
+        super.onPostResume();
     }
 
     /**
@@ -232,6 +241,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Toast.makeText(MainActivity.this, "Error de la base de datos.", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+                adapter = new MainAdapter(MainActivity.this, listaCanciones);
+                listViewCanciones.setAdapter(adapter);
+
             }
         }, new Response.ErrorListener() {
             @Override

@@ -4,25 +4,47 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:showDividers="none"
     android:weightSum="1">
 
     <ImageView
         android:id="@+id/imageViewListaCancion"
-        android:layout_width="77dp"
-        android:layout_height="79dp"
-        android:padding="5dp"
-        app:srcCompat="@drawable/pop" />
-
-    <TextView
-        android:id="@+id/textViewNombreCancion"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
-        android:background="@color/Verde"
-        android:elevation="1dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:text="{nombre_cancion}"
-        android:textColor="@color/Negro"
-        android:textSize="24sp" />
+        android:padding="5dp"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:showDividers="none">
+
+
+        <TextView
+            android:id="@+id/textViewNombreCancion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:elevation="1dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center_vertical"
+            android:text="{nombre_cancion}"
+            android:textColor="@color/Blanco"
+
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewArtista"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="{ARTISTA}"
+            android:textColor="@color/Blanco"
+            android:textSize="14sp" />
+    </LinearLayout>
+
 </LinearLayout>

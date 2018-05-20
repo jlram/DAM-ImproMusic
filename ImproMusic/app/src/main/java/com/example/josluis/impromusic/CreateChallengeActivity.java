@@ -39,6 +39,10 @@ public class CreateChallengeActivity extends AppCompatActivity {
     EditText editTextDescrChall;
 
     Spinner spinnerChall;
+    /**
+     * Variable que usaremos para que si se crea un reto desde una cancion
+     * marcar esa cancion como por defecto en el spinner.
+     */
     int selected = 0;
 
     Spinner spinnerDate;
@@ -47,6 +51,9 @@ public class CreateChallengeActivity extends AppCompatActivity {
     ArrayAdapter<String> adapterFecha;
     ArrayList<String> arraySpinner;
 
+    /**
+     *
+     */
     String URLConsulta;
     Request consulta;
     RequestQueue queue;

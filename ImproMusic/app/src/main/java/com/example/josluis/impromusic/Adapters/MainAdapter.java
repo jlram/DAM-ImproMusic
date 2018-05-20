@@ -28,13 +28,15 @@ public class MainAdapter extends ArrayAdapter<Song> {
         View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
         String cancion = getItem(position).getName();
+        String autor = getItem(position).getAuthor();
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
+        TextView artista = (TextView) customView.findViewById(R.id.textViewArtista);
         ImageView foto = (ImageView) customView.findViewById(R.id.imageViewListaCancion);
 
         nombre.setText(cancion);
-
-        foto.setImageResource(R.drawable.music);
+        artista.setText(autor);
+        //foto.setImageResource(R.drawable.music);
 
         return customView;
     }

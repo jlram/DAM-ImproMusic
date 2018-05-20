@@ -5,16 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Verde"
+    app:backgroundTint="@android:color/transparent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.josluis.impromusic.MainActivity"
-    tools:showIn="@layout/app_bar_main2"
-    app:backgroundTint="@android:color/transparent">
+    tools:showIn="@layout/app_bar_main2">
 
 
     <ListView
         android:id="@+id/listViewCanciones"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="10dp" />
+        android:layout_width="wrap_content"
+        android:divider="@android:color/transparent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
