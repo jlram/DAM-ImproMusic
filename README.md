@@ -14,3 +14,7 @@ participar en retos junto a otros usuarios para aportarse entre todos en el mund
 2. [19 de Abril](Memoria/19Abril.md).
 
 3. [3 de Mayo](Memoria/3Mayo.md).
+
+4. [17 de Mayo](Memoria/17Mayo.md).
+
+5. [29 de Mayo](Memoria/29Mayo.md).
