@@ -14,7 +14,7 @@
     <ListView
         android:id="@+id/listViewCanciones"
         android:layout_width="380dp"
-        android:layout_height="485dp"
+        android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="10dp" />
 </android.support.constraint.ConstraintLayout>

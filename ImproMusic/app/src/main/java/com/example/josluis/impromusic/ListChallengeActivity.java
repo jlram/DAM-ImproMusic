@@ -27,7 +27,7 @@ public class ListChallengeActivity extends AppCompatActivity {
     static ArrayList<Challenge> listaRetos;
     ChallAdapter adapter;
 
-    Request consulta;
+    Request<JSONArray> consulta;
 
     RequestQueue queue;
 
@@ -46,11 +46,11 @@ public class ListChallengeActivity extends AppCompatActivity {
 
         cargaRetos();
 
-        adapter = new ChallAdapter(this, listaRetos);
         listViewRetos = (ListView) findViewById(R.id.ListViewRetos);
-        listViewRetos.setAdapter(adapter);
 
     }
+
+
 
     @Override
     protected void onPostResume() {
@@ -77,6 +77,8 @@ public class ListChallengeActivity extends AppCompatActivity {
                         Toast.makeText(ListChallengeActivity.this, "Error de la base de datos.", Toast.LENGTH_SHORT).show();
                     }
                 }
+                adapter = new ChallAdapter(ListChallengeActivity.this, listaRetos);
+                listViewRetos.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
             @Override
