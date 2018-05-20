@@ -38,28 +38,49 @@ public class CreateChallengeActivity extends AppCompatActivity {
     EditText editTextNombreChall;
     EditText editTextDescrChall;
 
+    /**
+     * Spinner de las canciones
+     */
     Spinner spinnerChall;
+
     /**
      * Variable que usaremos para que si se crea un reto desde una cancion
      * marcar esa cancion como por defecto en el spinner.
      */
     int selected = 0;
 
+    /**
+     * Spinner de las fechas
+     */
     Spinner spinnerDate;
 
+    /**
+     * ArraysAdapters para las canciones y las fechas.
+     * El ArrayAdapter adapter obtiene la información de arraySpinner,
+     * ArrayList el cual se rellena desde el servidor. El array de fechas
+     * se rellena desde un string-array de resources.
+     */
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> adapterFecha;
+
     ArrayList<String> arraySpinner;
 
     /**
-     *
+     * Variables para las consultas a nuestra API.
      */
     String URLConsulta;
     Request consulta;
     RequestQueue queue;
 
+    /**
+     * Valor con el cual obtenemos la fecha deseada parseada para
+     * el servidor.
+     */
     CharSequence fecha;
 
+    /**
+     * Botón flotante para proceder a crear el reto.
+     */
     FloatingActionButton fabChall;
 
     @Override
@@ -83,6 +104,9 @@ public class CreateChallengeActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
+        /**
+         * Cogemos una fecha y la parseamos.
+         */
         android.text.format.DateFormat df = new android.text.format.DateFormat();
         fecha = df.format("yyyy-MM-dd", new Date());
 
