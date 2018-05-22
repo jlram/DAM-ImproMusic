@@ -4,6 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Verde"
     tools:context=".ChallengeActivity">
 
+    <TextView
+        android:id="@+id/textViewTituloReto"
+        android:layout_width="157dp"
+        android:layout_height="77dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="89dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

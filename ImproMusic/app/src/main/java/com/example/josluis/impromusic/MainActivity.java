@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * Método que se llama al pulsón el botón de navegacion BACK.
+     * Método que se llama al pulsar el botón de navegacion BACK.
      */
     @Override
     public void onBackPressed() {
