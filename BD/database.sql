@@ -70,3 +70,4 @@ insert into `Song` values (null, 'Cancion 9', 'Autor 4', 'Album 4', 'Rock', 5, "
 insert into `Song` values (null, 'Cancion 10', 'Autor 6', 'Album 6', 'Pop', 6, "");
 insert into `Song` values (null, 'Cancion 11', 'Autor 3', 'Album 3', 'Rock', 3, "");
 insert into `Song` values (null, 'Cancion 12', 'Autor 2', 'Album 2', 'Pop', 4, "");
+insert into `Song` values (null, 'BrotherMan BIll', 'TerribleTim', 'Spreads Love', 'Country', 4, "");

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.josluis.impromusic.R;
@@ -21,6 +21,8 @@ public class MainAdapter extends ArrayAdapter<Song> {
         super(context, R.layout.listview_view, canciones);
     }
 
+    boolean play = false;
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -32,7 +34,20 @@ public class MainAdapter extends ArrayAdapter<Song> {
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
         TextView artista = (TextView) customView.findViewById(R.id.textViewArtista);
-        ImageView foto = (ImageView) customView.findViewById(R.id.imageViewListaCancion);
+        final ImageButton foto = customView.findViewById(R.id.imageViewListaCancion);
+
+        foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (play) {
+                    foto.setImageResource(android.R.drawable.ic_media_play);
+                    play = false;
+                } else {
+                    foto.setImageResource(android.R.drawable.ic_media_pause);
+                    play = true;
+                }
+            }
+        });
 
         nombre.setText(cancion);
         artista.setText(autor);

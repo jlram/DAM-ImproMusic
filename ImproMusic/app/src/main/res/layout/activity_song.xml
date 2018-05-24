@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/textViewCancion"
-        android:layout_width="0dp"
+        android:layout_width="375dp"
         android:layout_height="0dp"
         android:layout_marginBottom="342dp"
         android:layout_marginLeft="65dp"
@@ -49,7 +49,7 @@
         android:textColor="@color/Negro"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBarCancion"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -76,11 +76,12 @@
 
     <ImageButton
         android:id="@+id/imageButtonMp3"
-        android:layout_width="161dp"
+        android:layout_width="69dp"
         android:layout_height="65dp"
         android:background="@drawable/circle_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.944"
@@ -91,7 +92,7 @@
 
     <SeekBar
         android:id="@+id/seekBarCancion"
-        android:layout_width="0dp"
+        android:layout_width="369dp"
         android:layout_height="0dp"
         android:layout_marginBottom="116dp"
         android:layout_marginEnd="34dp"

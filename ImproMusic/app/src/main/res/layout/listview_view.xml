@@ -5,13 +5,16 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:showDividers="none"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:descendantFocusability="blocksDescendants">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageViewListaCancion"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_weight="1"
+        android:focusable="false"
+        android:background="@android:color/transparent"
         android:padding="5dp"
         app:srcCompat="@android:drawable/ic_media_play" />
 
