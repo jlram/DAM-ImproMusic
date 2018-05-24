@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
 
-                    URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=login&username=" +
+                    URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=login&username=" +
                             mEditTextUser.getText() +"&password=" + mEditTextPwd.getText();
                     /**
                      * Comprueba que el array que recogemos no está vacio. Si lo estuviese,

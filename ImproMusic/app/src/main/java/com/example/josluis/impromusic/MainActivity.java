@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     public void cargaCanciones() {
 
-        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=consultaCanciones";
+        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaCanciones";
 
         consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override

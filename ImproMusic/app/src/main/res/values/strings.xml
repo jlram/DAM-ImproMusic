@@ -14,4 +14,6 @@
         <item>1 Semana</item>
         <item>1 Mes</item>
     </array>
+
+    <string name="localhost">hyperbruh.000webhostapp.com</string>
 </resources>

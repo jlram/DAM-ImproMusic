@@ -212,7 +212,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
                 }
 
         } else {
-                URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=crearReto&name=" +
+                URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=crearReto&name=" +
                         editTextNombreChall.getText().toString() + "&id_song=" + cancion.getID() +
                         "&id_user=" + usuario.getID() + "&creat_date=" + fecha + "&fin_date=" +
                         fecha2 + "&descr=" + editTextDescrChall.getText().toString();

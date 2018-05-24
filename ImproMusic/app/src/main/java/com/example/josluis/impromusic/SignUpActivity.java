@@ -80,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
                         fecha = df.format("yyyy-MM-dd", new Date());
 
                         //Consulta que llama al método insertar de nuestra API JSON
-                        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=insertar&username=" +
+                        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=insertar&username=" +
                                 mEditTextUser.getText() + "&password=" + mEditTextPWD.getText() + "&logdate= " + fecha;
 
                         consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONObject>() {

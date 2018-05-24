@@ -89,7 +89,7 @@ public class ListChallengeActivity extends AppCompatActivity {
         /**
          * URL de nuestra consulta
          */
-        URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=consultaRetos";
+        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaRetos";
 
         consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override

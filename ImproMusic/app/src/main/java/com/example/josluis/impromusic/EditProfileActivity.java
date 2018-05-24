@@ -126,7 +126,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (mEditTextPWD.getText().toString().equals(mEditTextPWD2.getText().toString()) && !mEditTextPWD.getText().toString().trim().equals("")) {
                     //guardar cambios
-                    URLConsulta = "http://10.0.2.2/API_JSON/usuarios.php?accion=actualizar&username=" +
+                    URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=actualizar&username=" +
                             usuario.getUsername() + "&password=" + mEditTextPWD.getText();
 
                     consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONObject>() {
