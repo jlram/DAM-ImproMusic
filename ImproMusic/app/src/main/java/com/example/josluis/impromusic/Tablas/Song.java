@@ -12,14 +12,16 @@ public class Song {
     private String album;
     private String genre;
     private int duration;
+    private String link;
 
-    public Song(int ID, String name, String author, String album, String genre, int duration) {
+    public Song(int ID, String name, String author, String album, String genre, int duration, String link) {
         this.ID = ID;
         this.name = name;
         this.author = author;
         this.album = album;
         this.genre = genre;
         this.duration = duration;
+        this.link = link;
     }
 
     public int getID() {
@@ -68,5 +70,13 @@ public class Song {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

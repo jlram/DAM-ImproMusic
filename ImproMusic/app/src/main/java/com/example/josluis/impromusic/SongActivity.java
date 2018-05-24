@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.example.josluis.impromusic.MainActivity.cancion;
 
@@ -28,6 +29,8 @@ public class SongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song);
+
+        Toast.makeText(this, cancion.getLink(), Toast.LENGTH_SHORT).show();
 
         textViewCancion = (TextView) findViewById(R.id.textViewCancion);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
