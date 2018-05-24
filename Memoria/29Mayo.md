@@ -8,6 +8,6 @@ Documento entregado para revisión el día 29/05/2018
 - [X] Corregir error de los ListView 
 - [ ] Crear lista de participaciones
 - [X] Añadir enlace de youtube a la participación
-- [ ] Añadir enlace a la cancion y empezar a reproducirla
+- [X] Añadir enlace a la cancion y empezar a reproducirla
 - [ ] Terminar la configuración del perfil
 - [ ] Implementar función de reproducir desde la lista de canciones
