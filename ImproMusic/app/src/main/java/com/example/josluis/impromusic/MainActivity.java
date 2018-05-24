@@ -36,6 +36,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import es.claucookie.miniequalizerlibrary.EqualizerView;
+
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

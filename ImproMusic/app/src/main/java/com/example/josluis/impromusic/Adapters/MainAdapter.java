@@ -15,6 +15,8 @@ import com.example.josluis.impromusic.Tablas.Song;
 
 import java.util.ArrayList;
 
+import es.claucookie.miniequalizerlibrary.EqualizerView;
+
 public class MainAdapter extends ArrayAdapter<Song> {
 
     public MainAdapter(Context context, ArrayList<Song> canciones) {
@@ -36,14 +38,21 @@ public class MainAdapter extends ArrayAdapter<Song> {
         TextView artista = (TextView) customView.findViewById(R.id.textViewArtista);
         final ImageButton foto = customView.findViewById(R.id.imageViewListaCancion);
 
+        final EqualizerView equalizer = (EqualizerView) customView.findViewById(R.id.equalizer_view);
+       // Whenever you want to tart the animation
+
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (play) {
                     foto.setImageResource(android.R.drawable.ic_media_play);
+                    equalizer.stopBars();
+                    equalizer.setVisibility(View.INVISIBLE);
                     play = false;
                 } else {
                     foto.setImageResource(android.R.drawable.ic_media_pause);
+                    equalizer.setVisibility(View.VISIBLE);
+                    equalizer.animateBars();
                     play = true;
                 }
             }
