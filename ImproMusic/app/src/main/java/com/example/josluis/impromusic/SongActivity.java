@@ -8,10 +8,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import static com.example.josluis.impromusic.MainActivity.cancion;
 
@@ -20,12 +22,14 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
     TextView textViewCancion;
     TextView textViewInfo;
 
+    ImageView cover;
+
     ImageButton buttonPlay;
     SeekBar seekBar;
 
-    Button buttonCrearReto;
-    Button buttonVerRetos;
-
+    ImageButton buttonCrearReto;
+    ImageButton buttonVerRetos;
+    ImageButton buttonLoop;
     /**
      * Declaración del mediaPlayer que vamos a usar para reproducir cada canción segun su URL.
      */
@@ -39,6 +43,7 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
     private final Handler handler = new Handler();
 
     boolean play = false;
+    boolean loop = false;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -46,24 +51,34 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song);
 
-
-
         textViewCancion = (TextView) findViewById(R.id.textViewCancion);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
 
-        buttonCrearReto = (Button) findViewById(R.id.buttonCrearReto);
-        buttonVerRetos = (Button) findViewById(R.id.buttonVerRetos);
+        buttonCrearReto = (ImageButton) findViewById(R.id.buttonCrearReto);
+        buttonVerRetos = (ImageButton) findViewById(R.id.buttonVerRetos);
 
         buttonPlay = (ImageButton) findViewById(R.id.imageButtonMp3);
         seekBar = (SeekBar)   findViewById(R.id.seekBarCancion);
+
+        cover = findViewById(R.id.imageViewCover);
+        buttonLoop = findViewById(R.id.imageButtonLoop);
 
         preparaCancion();
         seekBar.setMax(99);
         seekBar.setOnTouchListener(this);
 
-        textViewCancion.setText(cancion.getName());
+        /**
+         * Asigna los valores de la cancion a los distintos elementos de la acitividad:
+         */
 
-        textViewInfo.setText("Artista: " + cancion.getAuthor() + "\nAlbum: " + cancion.getAlbum());
+        textViewCancion.setText(cancion.getName());
+        textViewInfo.setText(cancion.getAuthor() + " - " + cancion.getAlbum());
+
+        /**
+         * Uso de la libreria Picasso. Descarga la imagen segun la URL proporcionada
+         * y la inserta en nuestro imageView.
+         */
+        Picasso.get().load("http://" + cancion.getCover()).resize(275, 275).into(cover);
 
         buttonPlay.setOnClickListener(new View.OnClickListener() {
 
@@ -71,7 +86,7 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
             @Override
             public void onClick(View view) {
                 try {
-                    mediaPlayer.setDataSource(cancion.getLink());
+                    mediaPlayer.setDataSource("http://" + cancion.getLink());
                     mediaPlayer.prepare();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -89,6 +104,21 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
                    play = true;
                }
                 primarySeekBarProgressUpdater();
+            }
+        });
+
+        buttonLoop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (loop) {
+                    mediaPlayer.setLooping(false);
+                    buttonLoop.setImageResource(R.drawable.loop_off);
+                    loop = false;
+                } else {
+                    mediaPlayer.setLooping(true);
+                    buttonLoop.setImageResource(R.drawable.loop);
+                    loop = true;
+                }
             }
         });
 
