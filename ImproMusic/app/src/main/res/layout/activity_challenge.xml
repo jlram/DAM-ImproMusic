@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Verde"
+    android:background="@drawable/gradiente_login"
     tools:context=".ChallengeActivity">
 
     <TextView
         android:id="@+id/textViewTituloReto"
         android:layout_width="157dp"
         android:layout_height="52dp"
-        android:layout_marginLeft="112dp"
-        android:layout_marginStart="112dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/Negro"
         android:textSize="24sp"
         app:fontFamily="sans-serif-smallcaps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_retos) {
             if (usuario.getID() == 2) {
-                Toast.makeText(this, "Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
             } else {
                 startActivity(new Intent(MainActivity.this, ListChallengeActivity.class));
             }

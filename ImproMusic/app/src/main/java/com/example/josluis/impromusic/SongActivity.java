@@ -3,8 +3,10 @@ package com.example.josluis.impromusic;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,9 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import static com.example.josluis.impromusic.LoginActivity.usuario;
 import static com.example.josluis.impromusic.MainActivity.cancion;
 
 public class SongActivity extends AppCompatActivity implements View.OnTouchListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener {
@@ -124,12 +128,17 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
          * Inicia la actividad para crear un reto.
          */
         buttonCrearReto.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SongActivity.this, CreateChallengeActivity.class));
-                mediaPlayer.pause();
-                buttonPlay.setImageResource(android.R.drawable.ic_media_play);
-                play = false;
+                if (usuario.getID() == 2) {
+                    Toast.makeText(SongActivity.this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(SongActivity.this, CreateChallengeActivity.class));
+                    mediaPlayer.pause();
+                    buttonPlay.setImageResource(android.R.drawable.ic_media_play);
+                    play = false;
+                }
             }
         });
 
@@ -137,12 +146,18 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
          * Inicia la actividad para ver la lista de retos.
          */
         buttonVerRetos.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SongActivity.this, ListChallengeActivity.class));
-                mediaPlayer.pause();
-                buttonPlay.setImageResource(android.R.drawable.ic_media_play);
-                play = false;
+
+                if (usuario.getID() == 2) {
+                    Toast.makeText(SongActivity.this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(SongActivity.this, ListChallengeActivity.class));
+                    mediaPlayer.pause();
+                    buttonPlay.setImageResource(android.R.drawable.ic_media_play);
+                    play = false;
+                }
             }
         });
     }
