@@ -36,8 +36,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import es.claucookie.miniequalizerlibrary.EqualizerView;
-
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -207,13 +205,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_canciones) {
 
         } else if (id == R.id.nav_retos) {
-            startActivity(new Intent(MainActivity.this, ListChallengeActivity.class));
+            if (usuario.getID() == 2) {
+                Toast.makeText(this, "Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(MainActivity.this, ListChallengeActivity.class));
+            }
         } else if (id == R.id.nav_perfil) {
             /**
              * Comprueba que el ID no es el del usuario invitado (ID = 2)
              */
             if (usuario.getID() == 2) {
-                Toast.makeText(this, "¡Registrate para acceder a esta opcion!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
             } else {
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
             }

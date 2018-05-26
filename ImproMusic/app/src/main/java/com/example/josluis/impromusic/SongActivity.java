@@ -92,10 +92,8 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
                     e.printStackTrace();
                 }
                 mediaFileLengthInMilliseconds = mediaPlayer.getDuration();
-
                 if (play) {
                    buttonPlay.setImageResource(android.R.drawable.ic_media_play);
-
                    mediaPlayer.pause();
                    play = false;
                } else {
