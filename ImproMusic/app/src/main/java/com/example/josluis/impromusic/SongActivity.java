@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 import static com.example.josluis.impromusic.MainActivity.cancion;
+import static com.example.josluis.impromusic.MainActivity.mediaPlayer;
 
 public class SongActivity extends AppCompatActivity implements View.OnTouchListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener {
 
@@ -34,10 +35,6 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
     ImageButton buttonCrearReto;
     ImageButton buttonVerRetos;
     ImageButton buttonLoop;
-    /**
-     * Declaración del mediaPlayer que vamos a usar para reproducir cada canción segun su URL.
-     */
-    private MediaPlayer mediaPlayer;
 
     /**
      * Valor que contiene la duración de la canción en milisegundos.

@@ -10,12 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.josluis.impromusic.MainActivity;
 import com.example.josluis.impromusic.R;
 import com.example.josluis.impromusic.Tablas.Song;
 
 import java.util.ArrayList;
 
 import es.claucookie.miniequalizerlibrary.EqualizerView;
+
+import static com.example.josluis.impromusic.MainActivity.mediaPlayer;
 
 public class MainAdapter extends ArrayAdapter<Song> {
 
@@ -27,7 +30,7 @@ public class MainAdapter extends ArrayAdapter<Song> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
@@ -41,19 +44,26 @@ public class MainAdapter extends ArrayAdapter<Song> {
         final EqualizerView equalizer = (EqualizerView) customView.findViewById(R.id.equalizer_view);
        // Whenever you want to tart the animation
 
+
+
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.setSong(getItem(position));
                 if (play) {
                     foto.setImageResource(android.R.drawable.ic_media_play);
                     equalizer.stopBars();
                     equalizer.setVisibility(View.INVISIBLE);
                     play = false;
+                    mediaPlayer.stop();
+                    mediaPlayer.seekTo(0);
                 } else {
                     foto.setImageResource(android.R.drawable.ic_media_pause);
                     equalizer.setVisibility(View.VISIBLE);
                     equalizer.animateBars();
                     play = true;
+                    mediaPlayer.start();
+
                 }
             }
         });
@@ -64,4 +74,7 @@ public class MainAdapter extends ArrayAdapter<Song> {
 
         return customView;
     }
+
+
+
 }

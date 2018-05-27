@@ -1,6 +1,7 @@
 package com.example.josluis.impromusic;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener {
 
     ListView listViewCanciones;
     static ArrayList<Song> listaCanciones;
@@ -53,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static Song cancion;
 
     NavigationView navigationView;
+
+    /**
+     * Declaración del mediaPlayer que vamos a usar para reproducir cada canción segun su URL.
+     */
+    public static MediaPlayer mediaPlayer;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -81,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Método declarado abajo.
         cargaCanciones();
+
+        //Preparación del mediaPlayer
+        preparaMediaPlayer();
 
         /**
          * Creamos un nuevo Adapter personalizado. Una vez hecho, declaramos nuestro ListView y le
@@ -267,5 +276,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         queue.add(consulta);
+    }
+    public void preparaMediaPlayer() {
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnBufferingUpdateListener(this);
+        mediaPlayer.setOnCompletionListener(this);
+    }
+
+    public static void setSong(Song song) {
+        try {
+            mediaPlayer.setDataSource("http://" + song.getLink());
+            mediaPlayer.prepare();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBufferingUpdate(MediaPlayer mediaPlayer, int i) {
+
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+
     }
 }
