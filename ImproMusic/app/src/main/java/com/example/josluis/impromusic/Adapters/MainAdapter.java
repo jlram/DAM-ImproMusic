@@ -26,7 +26,7 @@ public class MainAdapter extends ArrayAdapter<Song> {
         super(context, R.layout.listview_view, canciones);
     }
 
-    boolean play = false;
+    static boolean play = false;
 
     @NonNull
     @Override
@@ -50,6 +50,7 @@ public class MainAdapter extends ArrayAdapter<Song> {
             @Override
             public void onClick(View view) {
                 MainActivity.setSong(getItem(position));
+
                 if (play) {
                     foto.setImageResource(android.R.drawable.ic_media_play);
                     equalizer.stopBars();
@@ -58,12 +59,17 @@ public class MainAdapter extends ArrayAdapter<Song> {
                     mediaPlayer.stop();
                     mediaPlayer.seekTo(0);
                 } else {
-                    foto.setImageResource(android.R.drawable.ic_media_pause);
-                    equalizer.setVisibility(View.VISIBLE);
-                    equalizer.animateBars();
-                    play = true;
-                    mediaPlayer.start();
 
+                    //TODO -> VER ESTO
+//                    if (mediaPlayer.isPlaying()) {
+//                        Toast.makeText(getContext(), "Ya hay una canción sonando", Toast.LENGTH_SHORT).show();
+//                    } else {
+                        foto.setImageResource(android.R.drawable.ic_media_pause);
+                        equalizer.setVisibility(View.VISIBLE);
+                        equalizer.animateBars();
+                        play = true;
+                        mediaPlayer.start();
+//                    }
                 }
             }
         });

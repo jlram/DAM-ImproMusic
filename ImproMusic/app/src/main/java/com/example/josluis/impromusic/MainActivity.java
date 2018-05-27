@@ -139,6 +139,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 cancion = adapter.getItem(position);
                 startActivity(new Intent(MainActivity.this, SongActivity.class));
+
+                mediaPlayer.stop();
             }
         });
     }
