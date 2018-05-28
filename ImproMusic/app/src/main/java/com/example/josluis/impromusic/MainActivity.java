@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     RequestQueue queue;
 
-    static Song cancion;
+    public static Song cancion;
 
     NavigationView navigationView;
 
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPostResume() {
         navigationView.getMenu().getItem(0).setChecked(true);
+        preparaMediaPlayer();
         super.onPostResume();
     }
 
@@ -285,9 +286,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mediaPlayer.setOnCompletionListener(this);
     }
 
+    //TODO -> HACER LA PREVIEW DE CANCIONES Y ASIGNARLAS
     public static void setSong(Song song) {
+        cancion = song;
         try {
-            mediaPlayer.setDataSource("http://" + song.getLink());
+            mediaPlayer.setDataSource("http://" + song.getLink() /*+ "preview.mp3"*/);
             mediaPlayer.prepare();
         } catch (Exception e) {
             e.printStackTrace();

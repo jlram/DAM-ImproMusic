@@ -231,4 +231,10 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
         super.onDestroy();
         mediaPlayer.stop();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.pause();
+    }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.josluis.impromusic.MainActivity;
 import com.example.josluis.impromusic.R;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import es.claucookie.miniequalizerlibrary.EqualizerView;
 
+import static com.example.josluis.impromusic.MainActivity.cancion;
 import static com.example.josluis.impromusic.MainActivity.mediaPlayer;
 
 public class MainAdapter extends ArrayAdapter<Song> {
@@ -34,8 +36,8 @@ public class MainAdapter extends ArrayAdapter<Song> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.listview_view, parent, false);
 
-        String cancion = getItem(position).getName();
         String autor = getItem(position).getAuthor();
+        String rola = getItem(position).getName();
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombreCancion);
         TextView artista = (TextView) customView.findViewById(R.id.textViewArtista);
@@ -49,32 +51,30 @@ public class MainAdapter extends ArrayAdapter<Song> {
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.setSong(getItem(position));
-
-                if (play) {
-                    foto.setImageResource(android.R.drawable.ic_media_play);
-                    equalizer.stopBars();
-                    equalizer.setVisibility(View.INVISIBLE);
-                    play = false;
-                    mediaPlayer.stop();
-                    mediaPlayer.seekTo(0);
+                if (mediaPlayer.isPlaying() && cancion.getID() != getItem(position).getID()) {
+                    Toast.makeText(getContext(), "Ya hay otra canción sonando", Toast.LENGTH_SHORT).show();
                 } else {
+                    MainActivity.setSong(getItem(position));
 
-                    //TODO -> VER ESTO
-//                    if (mediaPlayer.isPlaying()) {
-//                        Toast.makeText(getContext(), "Ya hay una canción sonando", Toast.LENGTH_SHORT).show();
-//                    } else {
+                    if (play) {
+                        foto.setImageResource(android.R.drawable.ic_media_play);
+                        equalizer.stopBars();
+                        equalizer.setVisibility(View.INVISIBLE);
+                        play = false;
+                        mediaPlayer.stop();
+                        mediaPlayer.seekTo(0);
+                    } else {
                         foto.setImageResource(android.R.drawable.ic_media_pause);
                         equalizer.setVisibility(View.VISIBLE);
                         equalizer.animateBars();
                         play = true;
                         mediaPlayer.start();
-//                    }
+                    }
                 }
             }
         });
 
-        nombre.setText(cancion);
+        nombre.setText(rola);
         artista.setText(autor);
         //foto.setImageResource(R.drawable.music);
 

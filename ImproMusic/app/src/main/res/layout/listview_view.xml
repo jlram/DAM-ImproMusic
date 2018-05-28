@@ -60,6 +60,6 @@
         android:layout_height="match_parent"
         android:visibility="invisible"
         custom:animDuration="3500"
-        custom:foregroundColor="@color/Blanco" />
+        custom:foregroundColor="@color/Blanco"/>
 
 </LinearLayout>
