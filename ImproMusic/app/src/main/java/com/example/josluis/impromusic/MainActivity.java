@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_canciones) {
 
         } else if (id == R.id.nav_retos) {
-            if (usuario.getID() == 2) {
+            if (usuario.getUser_type().equals("invitado")) {
                 Toast.makeText(this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
             } else {
                 startActivity(new Intent(MainActivity.this, ListChallengeActivity.class));
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /**
              * Comprueba que el ID no es el del usuario invitado (ID = 2)
              */
-            if (usuario.getID() == 2) {
+            if (usuario.getUser_type().equals("invitado")) {
                 Toast.makeText(this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
             } else {
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
