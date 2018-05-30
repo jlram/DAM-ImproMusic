@@ -102,6 +102,16 @@ $conexion=Conectar($host,$user,$pass,$dbname);
           echo $json;
       break;
 
+      /*CONSULTA DE LA TABLA PARTICIPACIONES*/
+
+      case "consultaRetos":
+          $query="SELECT * FROM Participaciones";
+          $resultado=mysqli_query($conexion,$query) or die("ERROR");
+          $json=TABLA_A_JSON($resultado);
+          echo $json;
+      break;
+
+
     }
 
 ?>
