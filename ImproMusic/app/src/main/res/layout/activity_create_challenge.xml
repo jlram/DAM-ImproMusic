@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Verde"
+    android:background="@drawable/gradiente_login"
     tools:context="com.example.josluis.impromusic.CreateChallengeActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginTop="38dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="CREAR RETO"
-        android:textColor="@color/Negro"
+        android:textColor="@color/Blanco"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -86,7 +86,8 @@
         android:layout_marginBottom="36dp"
         android:layout_marginRight="6dp"
         android:clickable="true"
-        app:backgroundTint="@color/AzulClaro"
+        android:tint="@color/Negro"
+        app:backgroundTint="@color/Verde"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="@+id/editTextDescrChall"

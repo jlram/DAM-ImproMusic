@@ -6,9 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.josluis.impromusic.Adapters.PartAdapter;
 import com.example.josluis.impromusic.Tablas.Participation;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -23,6 +32,11 @@ public class ChallengeActivity extends AppCompatActivity {
     ListView listaParticipaciones;
     PartAdapter adapter;
 
+    String URLConsulta;
+    RequestQueue queue;
+
+    Request consulta;
+
     Button botonParticipar;
 
     @Override
@@ -34,6 +48,10 @@ public class ChallengeActivity extends AppCompatActivity {
         descrReto = findViewById(R.id.textViewDescrReto);
         listaParticipaciones = findViewById(R.id.listaParticipaciones);
         botonParticipar = findViewById(R.id.buttonParticipar);
+
+        queue = Volley.newRequestQueue(this);
+
+        cargarPart();
 
         /**
          * Uso de la variable "reto", asignada en ListChallengeActivity
@@ -55,7 +73,22 @@ public class ChallengeActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    private void cargarPart() {
 
+        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaRetos";
+        consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Toast.makeText(ChallengeActivity.this, "Ha entrado en el evento", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ChallengeActivity.this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(consulta);
     }
 }
