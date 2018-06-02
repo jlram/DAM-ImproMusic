@@ -77,7 +77,7 @@ public class ChallengeActivity extends AppCompatActivity {
 
     private void cargarPart() {
 
-        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaRetos";
+        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaPart";
         consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
