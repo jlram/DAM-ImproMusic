@@ -3,6 +3,7 @@ package com.example.josluis.impromusic;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,8 +17,11 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.josluis.impromusic.Adapters.PartAdapter;
 import com.example.josluis.impromusic.Tablas.Participation;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -51,6 +55,8 @@ public class ChallengeActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
+        arrayParticipaciones = new ArrayList<>();
+
         cargarPart();
 
         /**
@@ -69,7 +75,13 @@ public class ChallengeActivity extends AppCompatActivity {
         botonParticipar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            }
+        });
 
+        listaParticipaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ChallengeActivity.this, "aa", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,16 +89,28 @@ public class ChallengeActivity extends AppCompatActivity {
 
     private void cargarPart() {
 
-        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaPart";
+        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaPart&reto=" + reto.getID();
         consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(ChallengeActivity.this, "Ha entrado en el evento", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = response.getJSONObject(i);
+                        Participation temp = new Gson().fromJson(String.valueOf(obj), Participation.class);
+                        arrayParticipaciones.add(temp);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                adapter = new PartAdapter(ChallengeActivity.this, arrayParticipaciones);
+
+                listaParticipaciones.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ChallengeActivity.this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChallengeActivity.this, "Ha ocurrido un error cargando las participaciones.", Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(consulta);

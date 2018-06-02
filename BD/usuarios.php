@@ -105,12 +105,20 @@ $conexion=Conectar($host,$user,$pass,$dbname);
       /*CONSULTA DE LA TABLA PARTICIPACIONES*/
 
       case "consultaPart":
-          $query="SELECT * FROM Participaciones";
+          $query="SELECT * FROM Participation";
           $resultado=mysqli_query($conexion,$query) or die("ERROR");
           $json=TABLA_A_JSON($resultado);
           echo $json;
       break;
 
+
+      // case "consultaPartCancion":
+      //     $reto=$_GET["reto"];
+      //     $query="SELECT * FROM Participation WHERE ID_Chall = '$reto'";
+      //     $resultado=mysqli_query($conexion,$query) or die("ERROR");
+      //     $json=TABLA_A_JSON($resultado);
+      //     echo $json;
+      // break;
 
     }
 

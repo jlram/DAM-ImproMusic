@@ -1,10 +1,10 @@
 package com.example.josluis.impromusic;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,19 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.example.josluis.impromusic.LoginActivity.usuario;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.josluis.impromusic.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 /**
  * Actividad de Edición de Perfil, en la que el usuario
@@ -143,7 +141,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                     mEditTextPWD.setText("");
                                     mEditTextPWD2.setText("");
 
-                                    Toast.makeText(EditProfileActivity.this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, "Ha ocurrido un error modificando el perfil.admin", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
