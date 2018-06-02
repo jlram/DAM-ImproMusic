@@ -196,6 +196,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
      * creamos un nuevo reto.
      * TODO -> Comprobación de los editText
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void creaReto() {
         CharSequence fecha2 = cogeSpinner();
 

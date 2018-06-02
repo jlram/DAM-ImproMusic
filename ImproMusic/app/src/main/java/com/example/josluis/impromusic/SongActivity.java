@@ -128,7 +128,7 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                if (usuario.getID() == 2) {
+                if (usuario.getUser_type().equals("invitado")) {
                     Toast.makeText(SongActivity.this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(SongActivity.this, CreateChallengeActivity.class));
@@ -147,7 +147,7 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
             @Override
             public void onClick(View view) {
 
-                if (usuario.getID() == 2) {
+                if (usuario.getUser_type().equals("invitado")) {
                     Toast.makeText(SongActivity.this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(SongActivity.this, ListChallengeActivity.class));
@@ -230,5 +230,11 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
     protected void onDestroy() {
         super.onDestroy();
         mediaPlayer.stop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.pause();
     }
 }

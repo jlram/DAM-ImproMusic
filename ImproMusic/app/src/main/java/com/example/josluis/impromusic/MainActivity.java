@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     RequestQueue queue;
 
-    static Song cancion;
+    public static Song cancion;
 
     NavigationView navigationView;
 
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPostResume() {
         navigationView.getMenu().getItem(0).setChecked(true);
+        preparaMediaPlayer();
         super.onPostResume();
     }
 
@@ -216,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_canciones) {
 
         } else if (id == R.id.nav_retos) {
-            if (usuario.getID() == 2) {
+            if (usuario.getUser_type().equals("invitado")) {
                 Toast.makeText(this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
             } else {
                 startActivity(new Intent(MainActivity.this, ListChallengeActivity.class));
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /**
              * Comprueba que el ID no es el del usuario invitado (ID = 2)
              */
-            if (usuario.getID() == 2) {
+            if (usuario.getUser_type().equals("invitado")) {
                 Toast.makeText(this, "¡Regístrate para acceder a esta opción!", Toast.LENGTH_SHORT).show();
             } else {
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
@@ -285,9 +286,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mediaPlayer.setOnCompletionListener(this);
     }
 
+    //TODO -> HACER LA PREVIEW DE CANCIONES Y ASIGNARLAS
     public static void setSong(Song song) {
+        cancion = song;
         try {
-            mediaPlayer.setDataSource("http://" + song.getLink());
+            mediaPlayer.setDataSource("http://" + song.getLink() /*+ "preview.mp3"*/);
             mediaPlayer.prepare();
         } catch (Exception e) {
             e.printStackTrace();
