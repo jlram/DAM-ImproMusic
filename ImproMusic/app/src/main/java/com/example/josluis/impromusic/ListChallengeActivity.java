@@ -36,7 +36,7 @@ public class ListChallengeActivity extends AppCompatActivity {
 
     String URLConsulta;
 
-    static Challenge reto;
+    public static Challenge reto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

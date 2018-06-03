@@ -1,5 +1,7 @@
 package com.example.josluis.impromusic;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,6 +45,8 @@ public class ChallengeActivity extends AppCompatActivity {
 
     Button botonParticipar;
 
+    public static Participation participacion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +85,12 @@ public class ChallengeActivity extends AppCompatActivity {
         listaParticipaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ChallengeActivity.this, "aa", Toast.LENGTH_SHORT).show();
+                participacion = adapter.getItem(i);
+                Intent webIntent = null;
+                if (participacion != null) {
+                    webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(participacion.getYoutube()));
+                }
+                view.getContext().startActivity(webIntent);
             }
         });
 

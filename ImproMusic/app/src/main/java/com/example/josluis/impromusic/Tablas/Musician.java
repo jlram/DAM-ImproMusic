@@ -3,14 +3,11 @@ package com.example.josluis.impromusic.Tablas;
 import android.annotation.TargetApi;
 import android.icu.util.Calendar;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 
 /**
  * Created by jlram on 09/04/2018.
  */
-
 @TargetApi(Build.VERSION_CODES.N)
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class Musician {
 
     private int ID;
@@ -31,6 +28,7 @@ public class Musician {
         this.id_pic = id_pic;
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
     public Musician() {
         this.ID = 2;
         this.username = "invitado";

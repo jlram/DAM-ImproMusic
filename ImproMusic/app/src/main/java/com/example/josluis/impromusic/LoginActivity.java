@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     JsonArrayRequest consulta;
 
-    static Musician usuario;
+    public static Musician usuario;
 
     public static Activity fa;
 

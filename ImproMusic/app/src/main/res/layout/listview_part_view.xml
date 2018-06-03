@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/textViewNombrePart"
-        android:layout_width="246dp"
+        android:layout_width="232dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
@@ -17,15 +17,31 @@
         android:textSize="18sp"
         app:fontFamily="sans-serif-smallcaps" />
 
-    <ImageButton
-        android:id="@+id/imageViewListPart"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
+    <LinearLayout
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:focusable="false"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/youtube" />
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageViewListPart"
+            android:layout_width="111dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/blackstar" />
+
+        <TextView
+            android:id="@+id/textViewVotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:fontFamily="sans-serif-smallcaps" />
+    </LinearLayout>
 
 </LinearLayout>

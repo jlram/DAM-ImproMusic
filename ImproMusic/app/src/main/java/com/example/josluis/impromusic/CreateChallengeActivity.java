@@ -201,15 +201,18 @@ public class CreateChallengeActivity extends AppCompatActivity {
         CharSequence fecha2 = cogeSpinner();
 
         if (editTextNombreChall.getText().toString().isEmpty() ||
+                editTextNombreChall.getText().toString().length() > 30 ||
                 editTextDescrChall.getText().toString().isEmpty() ||
                 fecha2.equals("ERROR")) {
 
                 if (fecha2.equals("ERROR")) {
                     Toast.makeText(this, "Por favor, elige una fecha.",
                             Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Por favor, rellena todos los campos",
+                } else if ( editTextNombreChall.getText().toString().length() > 30) {
+                    Toast.makeText(this, "Introduce un nombre más corto.",
                             Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show();
                 }
 
         } else {
