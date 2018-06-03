@@ -12,7 +12,7 @@ Documento entregado para revisión el día 29/05/2018
 - [ ] Terminar la configuración del perfil
 - [ ] Implementar función de reproducir desde la lista de canciones
 
-# Cambios en el diseño
+# Cambios destacables
 
 ## MainActivity
 
@@ -41,10 +41,6 @@ Documento entregado para revisión el día 29/05/2018
 
 <img src="https://i.imgur.com/KgrMD4r.png" width="40%">
 
-
-# Avances de programación
-
-ya redactaré esto xd
 
 # Otros cambios
 
