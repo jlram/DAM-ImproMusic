@@ -4,18 +4,28 @@ import java.util.Date;
 
 public class Participation {
 
+    private int ID;
     private int ID_musician;
     private int ID_chall;
     private Date part_date;
     private int votes;
     private String youtube;
 
-    public Participation(int ID_musician, int ID_chall, Date part_date, int votes, String youtube) {
+    public Participation(int ID, int ID_musician, int ID_chall, Date part_date, int votes, String youtube) {
+        this.ID = ID;
         this.ID_musician = ID_musician;
         this.ID_chall = ID_chall;
         this.part_date = part_date;
         this.votes = votes;
         this.youtube = youtube;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getID_musician() {

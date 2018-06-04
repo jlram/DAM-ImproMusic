@@ -1,12 +1,16 @@
 package com.example.josluis.impromusic;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static com.example.josluis.impromusic.ListChallengeActivity.reto;
+import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class ChallengeActivity extends AppCompatActivity {
 
@@ -79,6 +84,38 @@ public class ChallengeActivity extends AppCompatActivity {
         botonParticipar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(ChallengeActivity.this);
+                final EditText input = new EditText(ChallengeActivity.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                alertDialog.setTitle("Introduce el enlace de youtube");
+                input.setLayoutParams(lp);
+                alertDialog.setView(input);
+                alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=registrarParticipacion&chall=" + reto.getID() + "&music="
+                        + usuario.getID() + "&date=2018-06-04&youtube=" + input.getText().toString();
+                        consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+
+                                Toast.makeText(ChallengeActivity.this, "¡Gracias por participar!", Toast.LENGTH_SHORT).show();
+                                cargarPart();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(ChallengeActivity.this, "Ya has participado en este reto.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        queue.add(consulta);
+
+                    }
+                });// uncomment this line
+                alertDialog.show();
             }
         });
 
@@ -98,6 +135,10 @@ public class ChallengeActivity extends AppCompatActivity {
 
     private void cargarPart() {
 
+        if (adapter != null) {
+            adapter.clear();
+        }
+
         URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaPart&reto=" + reto.getID();
         consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
@@ -115,6 +156,10 @@ public class ChallengeActivity extends AppCompatActivity {
                 adapter = new PartAdapter(ChallengeActivity.this, arrayParticipaciones);
 
                 listaParticipaciones.setAdapter(adapter);
+
+                if (arrayParticipaciones.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Aún no ha participado nadie. ¡Sé el primero!", Toast.LENGTH_SHORT).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
