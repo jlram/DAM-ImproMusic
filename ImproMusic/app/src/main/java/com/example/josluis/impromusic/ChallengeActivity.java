@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.josluis.impromusic.Adapters.PartAdapter.votado;
 import static com.example.josluis.impromusic.ListChallengeActivity.reto;
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 
@@ -168,5 +169,33 @@ public class ChallengeActivity extends AppCompatActivity {
             }
         });
         queue.add(consulta);
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        ChallengeActivity.super.onBackPressed();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+        if (votado[0]) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ChallengeActivity.this);
+            builder.setMessage("¿Desear salir? No podrás volver a votar.").setPositiveButton("Sí", dialogClickListener)
+                    .setNegativeButton("No", dialogClickListener).show();
+        } else {
+            ChallengeActivity.super.onBackPressed();
+        }
     }
 }

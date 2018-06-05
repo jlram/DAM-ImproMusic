@@ -30,6 +30,7 @@ import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class PartAdapter extends ArrayAdapter<Participation>{
     static final boolean[] ok = new boolean[1];
+    public static final boolean[] votado = {false};
 
     /**
      * Variable Participacion para sacar datos.
@@ -68,15 +69,15 @@ public class PartAdapter extends ArrayAdapter<Participation>{
 
         votos.setText(part.getVotes() + "");
 
-        final boolean[] votado = {false};
+
 
         /**
          * Marca la variable que ha votado el usuario.
          */
-        if(position == 1) {
-            imageButton.setImageResource(R.drawable.yellowstar);
-            votado[0] = true;
-        }
+//        if(position == 1) {
+//            imageButton.setImageResource(R.drawable.yellowstar);
+//            votado[0] = true;
+//        }
 
         /**
          * Evento del boton para poder puntuar esa participacion y por tanto,
