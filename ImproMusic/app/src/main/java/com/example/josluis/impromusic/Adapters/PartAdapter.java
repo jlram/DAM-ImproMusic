@@ -198,6 +198,8 @@ public class PartAdapter extends ArrayAdapter<Participation>{
             @Override
             public void onResponse(JSONArray response) {
 
+//                Toast.makeText(getContext(), "Voto eliminado con éxito.", Toast.LENGTH_SHORT).show();
+//                ok[0] = false;
                 System.out.println(response);
                 Toast.makeText(getContext(), "Voto registrado con éxito.", Toast.LENGTH_SHORT).show();
                 ok[0] = true;
@@ -207,6 +209,7 @@ public class PartAdapter extends ArrayAdapter<Participation>{
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
                 Toast.makeText(getContext(), "No ha sido posible registrar el voto.", Toast.LENGTH_SHORT).show();
+                ok[0] = false;
             }
         });
         queue.add(consulta);
