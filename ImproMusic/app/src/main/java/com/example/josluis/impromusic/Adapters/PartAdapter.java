@@ -31,6 +31,9 @@ import static com.example.josluis.impromusic.LoginActivity.usuario;
 public class PartAdapter extends ArrayAdapter<Participation>{
     static final boolean[] ok = new boolean[1];
 
+    /**
+     * Variable Participacion para sacar datos.
+     */
     static Participation parti;
 
     public PartAdapter(Context context, ArrayList<Participation> participaciones) {
@@ -43,9 +46,14 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         LayoutInflater inflater = LayoutInflater.from(getContext());
         final View customView = inflater.inflate(R.layout.listview_part_view, parent, false);
 
+        /**
+         * Asigna la variable participacion.
+         */
         final Participation part; part = getItem(position);
 
-
+        /**
+         * Coge la id del musico que participa en el reto.
+         */
         final int participante = getItem(position).getID_musician();
 
         TextView nombre = (TextView) customView.findViewById(R.id.textViewNombrePart);
@@ -53,12 +61,27 @@ public class PartAdapter extends ArrayAdapter<Participation>{
 
         final TextView votos = customView.findViewById(R.id.textViewVotos);
 
+        /**
+         * Asigna los datos a cada participacion.
+         */
         nombre.setText(participante + "");
 
         votos.setText(part.getVotes() + "");
 
         final boolean[] votado = {false};
 
+        /**
+         * Marca la variable que ha votado el usuario.
+         */
+        if(position == 1) {
+            imageButton.setImageResource(R.drawable.yellowstar);
+            votado[0] = true;
+        }
+
+        /**
+         * Evento del boton para poder puntuar esa participacion y por tanto,
+         * añadir a la cuenta de votos en las tablas participaciones y votos.
+         */
         imageButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -88,6 +111,10 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         return customView;
     }
 
+
+    /**
+     * Añade el voto a la tabla de participaciones
+     */
     public void sumaVoto() {
 
         final RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -109,6 +136,9 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         queue.add(consulta);
     }
 
+    /**
+     * Resta el voto a la tabla de participaciones
+     */
     public void restaVoto() {
 
         final RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -131,7 +161,7 @@ public class PartAdapter extends ArrayAdapter<Participation>{
     }
 
     /**
-     * TODO -> VER SI ES NECESARIO USAR ESTE METODO
+     * Consulta si hay un voto con los datos introducidos
      */
     public void consultaVoto() {
 
@@ -154,6 +184,10 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         queue.add(consulta);
     }
 
+    /**
+     * Añade el voto a la tabla voto.
+     * @return
+     */
     public boolean registraVoto() {
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
@@ -178,6 +212,9 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         return ok[0];
     }
 
+    /**
+     * Elimina el voto de la tabla voto
+     */
     public void eliminaVoto() {
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
