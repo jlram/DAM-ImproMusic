@@ -19,7 +19,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="@color/Negro"
+        android:textColor="@color/Blanco"
         android:textSize="24sp"
         app:fontFamily="sans-serif-smallcaps"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_marginTop="82dp"
         android:gravity="center_horizontal"
         android:text="TextView"
-        android:textColor="@color/Negro"
+        android:textColor="@color/Blanco"
         android:textSize="18sp"
         app:fontFamily="sans-serif-smallcaps"
         app:layout_constraintBottom_toTopOf="@+id/listaParticipaciones"
@@ -58,7 +58,9 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonParticipar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescrReto" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescrReto"
+        android:maxLines = "3"
+        android:scrollbars = "vertical"/>
 
     <Button
         android:id="@+id/buttonParticipar"

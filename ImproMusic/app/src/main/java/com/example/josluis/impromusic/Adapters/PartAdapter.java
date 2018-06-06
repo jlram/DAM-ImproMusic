@@ -30,7 +30,8 @@ import static com.example.josluis.impromusic.LoginActivity.usuario;
 
 public class PartAdapter extends ArrayAdapter<Participation>{
     static final boolean[] ok = new boolean[1];
-    public static final boolean[] votado = {false};
+//    public static final boolean[] votado = {false};
+    public static boolean puedeVotar = true;
 
     /**
      * Variable Participacion para sacar datos.
@@ -69,16 +70,6 @@ public class PartAdapter extends ArrayAdapter<Participation>{
 
         votos.setText(part.getVotes() + "");
 
-
-
-        /**
-         * Marca la variable que ha votado el usuario.
-         */
-//        if(position == 1) {
-//            imageButton.setImageResource(R.drawable.yellowstar);
-//            votado[0] = true;
-//        }
-
         /**
          * Evento del boton para poder puntuar esa participacion y por tanto,
          * añadir a la cuenta de votos en las tablas participaciones y votos.
@@ -87,26 +78,21 @@ public class PartAdapter extends ArrayAdapter<Participation>{
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                if (votado[0]) {
+                if (!puedeVotar) {
                     parti = part;
                     imageButton.setImageResource(R.drawable.blackstar);
                     //RESTAR 1 A LOS VOTOS DE LA BASE DE DATOS
                         eliminaVoto();
                         votos.setText((parti.getVotes()) + "");
                         restaVoto();
-                        votado[0] = false;
+                        puedeVotar = true;
                 } else {
                     parti = part;
-                        registraVoto();
-                        if (!ok[0]) {
-                            imageButton.setImageResource(R.drawable.yellowstar);
-                            //SUMAR 1 A LOS VOTOS DE LA BASE DE DATOS
+                    registraVoto(imageButton,votos);
 
-                            sumaVoto();
-                            votos.setText((parti.getVotes()+1) + "");
-                            votado[0] = true;
-                        }
+                    puedeVotar = false;
                 }
+
             }
         });
         return customView;
@@ -120,8 +106,8 @@ public class PartAdapter extends ArrayAdapter<Participation>{
 
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=sumarVoto&chall=" + reto.getID() + "&music=" + usuario.getID() + "&part= " + parti.getID();
-
+        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=sumarVoto&part=" + parti.getID();
+        System.out.println(URLConsulta);
         Request consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -144,7 +130,7 @@ public class PartAdapter extends ArrayAdapter<Participation>{
 
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=restarVoto&chall=" + reto.getID() + "&music=" + usuario.getID() + "&part= " + parti.getID();
+        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=restarVot&part= " + parti.getID();
 
         Request consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
@@ -189,7 +175,7 @@ public class PartAdapter extends ArrayAdapter<Participation>{
      * Añade el voto a la tabla voto.
      * @return
      */
-    public boolean registraVoto() {
+    public boolean registraVoto(final ImageButton img, final TextView txt) {
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
         String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=registrarVoto&chall=" + reto.getID() + "&music=" + usuario.getID() + "&part=" + parti.getID();
@@ -197,23 +183,27 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         Request consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
+                img.setImageResource(R.drawable.yellowstar);
+                sumaVoto();
+                txt.setText((parti.getVotes()+1 + ""));
 //                Toast.makeText(getContext(), "Voto eliminado con éxito.", Toast.LENGTH_SHORT).show();
 //                ok[0] = false;
                 System.out.println(response);
                 Toast.makeText(getContext(), "Voto registrado con éxito.", Toast.LENGTH_SHORT).show();
-                ok[0] = true;
+//                ok[0] = true;
+                puedeVotar = false;
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
                 Toast.makeText(getContext(), "No ha sido posible registrar el voto.", Toast.LENGTH_SHORT).show();
-                ok[0] = false;
+//                ok[0] = false;
+                puedeVotar = true;
             }
         });
         queue.add(consulta);
-        return ok[0];
+        return puedeVotar;
     }
 
     /**

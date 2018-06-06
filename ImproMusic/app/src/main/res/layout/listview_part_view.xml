@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Id usuario"
-        android:textColor="@color/Negro"
+        android:textColor="@color/Blanco"
         android:textSize="18sp"
         app:fontFamily="sans-serif-smallcaps" />
 

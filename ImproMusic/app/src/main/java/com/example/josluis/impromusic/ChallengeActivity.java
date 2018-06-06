@@ -1,11 +1,13 @@
 package com.example.josluis.impromusic;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,9 +33,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.josluis.impromusic.Adapters.PartAdapter.votado;
+import static com.example.josluis.impromusic.Adapters.PartAdapter.puedeVotar;
 import static com.example.josluis.impromusic.ListChallengeActivity.reto;
 import static com.example.josluis.impromusic.LoginActivity.usuario;
+import static com.example.josluis.impromusic.MainActivity.cancion;
 
 public class ChallengeActivity extends AppCompatActivity {
 
@@ -53,11 +56,12 @@ public class ChallengeActivity extends AppCompatActivity {
 
     public static Participation participacion;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
-
+        puedeVotar = true;
         nombreReto = findViewById(R.id.textViewTituloReto);
         descrReto = findViewById(R.id.textViewDescrReto);
         listaParticipaciones = findViewById(R.id.listaParticipaciones);
@@ -69,12 +73,14 @@ public class ChallengeActivity extends AppCompatActivity {
 
         cargarPart();
 
+        descrReto.setMovementMethod(new ScrollingMovementMethod());
+
         /**
          * Uso de la variable "reto", asignada en ListChallengeActivity
          */
         nombreReto.setText(reto.getName());
 
-        descrReto.setText(reto.getDescr());
+        descrReto.setText(cancion.getName() + reto.getDescr());
 
         /**
          * TODO -> Hacer la clase Participation en funcion de la base de datos
@@ -190,7 +196,7 @@ public class ChallengeActivity extends AppCompatActivity {
                 }
             }
         };
-        if (votado[0]) {
+        if (!puedeVotar) {
             AlertDialog.Builder builder = new AlertDialog.Builder(ChallengeActivity.this);
             builder.setMessage("¿Desear salir? No podrás volver a votar.").setPositiveButton("Sí", dialogClickListener)
                     .setNegativeButton("No", dialogClickListener).show();
