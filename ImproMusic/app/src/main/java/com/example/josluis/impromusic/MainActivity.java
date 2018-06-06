@@ -1,5 +1,7 @@
 package com.example.josluis.impromusic;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -11,12 +13,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +31,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.josluis.impromusic.Adapters.MainAdapter;
 import com.example.josluis.impromusic.Tablas.Song;
@@ -101,13 +107,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * Metodo que le da funcionalidad al botón flotante. Haremos una llamada a la actividad de sugerencias.
          */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Contactar con los administradores", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+        if(usuario.getUser_type().equals("admin")) {
+            fab.setImageResource(R.drawable.add);
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    meterCancion();
+                }
+            });
+
+        } else if (usuario.getUser_type().equals("normal")) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Contactar con los administradores", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+        } else {
+            fab.setVisibility(View.INVISIBLE);
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -181,25 +203,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
-
- /*
-    NO ESTOY SEGURO PERO CREO QUE ESTO ES USELESS AF
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
 
     /**
      * Evento de selección de items en la barra lateral.
@@ -290,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static void setSong(Song song) {
         cancion = song;
         try {
-            mediaPlayer.setDataSource("http://" + song.getLink() /*+ "preview.mp3"*/);
+            mediaPlayer.setDataSource("http://" + song.getLink() + ".preview.mp3");
             mediaPlayer.prepare();
         } catch (Exception e) {
             e.printStackTrace();
@@ -306,4 +309,82 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onCompletion(MediaPlayer mediaPlayer) {
 
     }
+
+    public void meterCancion() {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+        dialog.setTitle("Introduce los datos de la canción");
+//        dialog.setMessage("Completa los campos");
+        Context context = MainActivity.this;
+        LinearLayout layout = new LinearLayout(context);
+        layout.setPadding(15, 15, 15, 15);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final EditText nombreBox = new EditText(context);
+        nombreBox.setHint("Nombre");
+        layout.addView(nombreBox);
+
+        final EditText authorBox = new EditText(context);
+        authorBox.setHint("Autor");
+        layout.addView(authorBox);
+
+        final EditText albumBox = new EditText(context);
+        albumBox.setHint("Album");
+        layout.addView(albumBox);
+
+        final EditText genreBox = new EditText(context);
+        genreBox.setHint("Género");
+        layout.addView(genreBox);
+
+        final EditText coverBox = new EditText(context);
+        coverBox.setHint("Portada");
+        layout.addView(coverBox);
+
+        final EditText linkBox = new EditText(context);
+        linkBox.setHint("Enlace");
+        layout.addView(linkBox);
+
+        dialog.setView(layout); // Again this is a set method, not add
+
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                if (nombreBox.getText().toString().isEmpty() || authorBox.getText().toString().isEmpty() ||
+                    albumBox.getText().toString().isEmpty() || genreBox.getText().toString().isEmpty() ||
+                    coverBox.getText().toString().isEmpty() || linkBox.getText().toString().isEmpty()) {
+
+                    Toast.makeText(MainActivity.this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=meterCancion&name=" +
+                            nombreBox.getText().toString() + "&author=" +
+                            authorBox.getText().toString() + "&album=" +
+                            albumBox.getText().toString() + "&genre=" +
+                            genreBox.getText().toString() + "&cover=" +
+                            coverBox.getText().toString() + "&link=" + linkBox.getText().toString();
+
+                    consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Toast.makeText(MainActivity.this, "Canción añadida"
+                                            , Toast.LENGTH_SHORT).show();
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(MainActivity.this, "Ha ocurrido un error"
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    queue.add(consulta);
+                }
+            }
+        });
+
+        dialog.show();
+
+    }
+
 }
