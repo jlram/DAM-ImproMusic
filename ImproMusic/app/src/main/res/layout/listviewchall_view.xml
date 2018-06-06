@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="100dp"
-    android:background="@color/Verde">
+    android:layout_margin="10dp"
+    android:background="@drawable/roundlistview">
 
     <TextView
         android:id="@+id/textViewNombreChall"
@@ -12,7 +13,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="{nombre chall}"
-        android:textColor="@color/Negro"
+        android:textColor="@color/Blanco"
         android:textSize="24sp"
         app:fontFamily="sans-serif-smallcaps" />
 
@@ -23,6 +24,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Creador por {autor chall}"
-        android:textColor="@color/Negro" />
+        android:textColor="@color/Blanco" />
 
 </LinearLayout>

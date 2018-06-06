@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/textViewTituloReto"
-        android:layout_width="0dp"
+        android:layout_width="336dp"
         android:layout_height="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/textViewDescrReto"
-        android:layout_width="0dp"
+        android:layout_width="338dp"
         android:layout_height="82dp"
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="37dp"
@@ -39,7 +39,7 @@
         android:gravity="center_horizontal"
         android:text="TextView"
         android:textColor="@color/Blanco"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:fontFamily="sans-serif-smallcaps"
         app:layout_constraintBottom_toTopOf="@+id/listaParticipaciones"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,12 +55,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:maxLines="3"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/buttonParticipar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescrReto"
-        android:maxLines = "3"
-        android:scrollbars = "vertical"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescrReto" />
 
     <Button
         android:id="@+id/buttonParticipar"

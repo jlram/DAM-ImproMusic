@@ -19,9 +19,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.josluis.impromusic.R;
+import com.example.josluis.impromusic.Tablas.Musician;
 import com.example.josluis.impromusic.Tablas.Participation;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -48,6 +52,7 @@ public class PartAdapter extends ArrayAdapter<Participation>{
         LayoutInflater inflater = LayoutInflater.from(getContext());
         final View customView = inflater.inflate(R.layout.listview_part_view, parent, false);
 
+
         /**
          * Asigna la variable participacion.
          */
@@ -58,15 +63,17 @@ public class PartAdapter extends ArrayAdapter<Participation>{
          */
         final int participante = getItem(position).getID_musician();
 
-        TextView nombre = (TextView) customView.findViewById(R.id.textViewNombrePart);
+        final TextView nombre = customView.findViewById(R.id.textViewNombrePart);
         final ImageButton imageButton = customView.findViewById(R.id.imageViewListPart);
 
         final TextView votos = customView.findViewById(R.id.textViewVotos);
 
+        consultaPorID(participante, nombre);
+
         /**
          * Asigna los datos a cada participacion.
          */
-        nombre.setText(participante + "");
+        nombre.setText("cargando...");
 
         votos.setText(part.getVotes() + "");
 
@@ -141,7 +148,6 @@ public class PartAdapter extends ArrayAdapter<Participation>{
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
-                Toast.makeText(getContext(), "No ha sido posible borrar el voto.", Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(consulta);
@@ -150,16 +156,25 @@ public class PartAdapter extends ArrayAdapter<Participation>{
     /**
      * Consulta si hay un voto con los datos introducidos
      */
-    public void consultaVoto() {
+    public void consultaPorID(int partic, final TextView txt) {
 
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=consultarVoto&chall=" + reto.getID() + "&music=" + usuario.getID() + "&part=" + parti.getID();;
+        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=consultaPorID&id=" + partic;
 
         Request consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println(response);
+                JSONObject obj = null;
+                try {
+                    obj = response.getJSONObject(0);
+                    Musician temp =  new Gson().fromJson(String.valueOf(obj), Musician.class);
+                    txt.setText(temp.getUsername());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override

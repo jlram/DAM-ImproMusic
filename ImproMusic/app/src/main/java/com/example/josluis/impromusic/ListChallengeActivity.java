@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,6 +35,8 @@ public class ListChallengeActivity extends AppCompatActivity {
 
     RequestQueue queue;
 
+    TextView mtxt;
+
     String URLConsulta;
 
     public static Challenge reto;
@@ -46,6 +49,8 @@ public class ListChallengeActivity extends AppCompatActivity {
         listaRetos = new ArrayList<>();
 
         queue = Volley.newRequestQueue(this);
+
+        mtxt = findViewById(R.id.textViewTituloChalls);
 
         /**
          * LLamada al método para cargar la lista al iniciar la actividad.

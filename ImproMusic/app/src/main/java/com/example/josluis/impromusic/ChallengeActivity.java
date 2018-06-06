@@ -25,6 +25,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.josluis.impromusic.Adapters.PartAdapter;
 import com.example.josluis.impromusic.Tablas.Participation;
+import com.example.josluis.impromusic.Tablas.Song;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -41,7 +42,6 @@ import static com.example.josluis.impromusic.MainActivity.cancion;
 public class ChallengeActivity extends AppCompatActivity {
 
     TextView nombreReto;
-    TextView descrReto;
 
     ArrayList<Participation> arrayParticipaciones;
     ListView listaParticipaciones;
@@ -63,7 +63,7 @@ public class ChallengeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_challenge);
         puedeVotar = true;
         nombreReto = findViewById(R.id.textViewTituloReto);
-        descrReto = findViewById(R.id.textViewDescrReto);
+        final TextView descrReto = findViewById(R.id.textViewDescrReto);
         listaParticipaciones = findViewById(R.id.listaParticipaciones);
         botonParticipar = findViewById(R.id.buttonParticipar);
 
@@ -73,14 +73,16 @@ public class ChallengeActivity extends AppCompatActivity {
 
         cargarPart();
 
+        consultaCancionID(descrReto);
+
         descrReto.setMovementMethod(new ScrollingMovementMethod());
 
         /**
          * Uso de la variable "reto", asignada en ListChallengeActivity
          */
-        nombreReto.setText(reto.getName());
+        nombreReto.setText("Reto: " + reto.getName());
 
-        descrReto.setText(cancion.getName() + reto.getDescr());
+        descrReto.setText(reto.getDescr());
 
         /**
          * TODO -> Hacer la clase Participation en funcion de la base de datos
@@ -177,8 +179,6 @@ public class ChallengeActivity extends AppCompatActivity {
         queue.add(consulta);
     }
 
-
-
     @Override
     public void onBackPressed() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -203,5 +203,30 @@ public class ChallengeActivity extends AppCompatActivity {
         } else {
             ChallengeActivity.super.onBackPressed();
         }
+    }
+
+    public void consultaCancionID(final TextView txt) {
+        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaCancionPorID&song=" + reto.getID_song();
+
+        consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                    try {
+                        JSONObject obj = response.getJSONObject(0);
+                        cancion =  new Gson().fromJson(String.valueOf(obj), Song.class);
+                        txt.setText(reto.getDescr() + "\n\nCanción: " + cancion.getName());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(ChallengeActivity.this, "Error de la base de datos.", Toast.LENGTH_SHORT).show();
+                    }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ChallengeActivity.this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(consulta);
     }
 }
