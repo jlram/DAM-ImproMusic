@@ -44,4 +44,4 @@ Documento entregado para revisión el día 29/05/2018
 
 # Otros cambios
 
-- Obtención de un dominio con base de datos para poder acceder a todas mis tablas sin la necesidad de trabajar en localhost.<a href="hyperbruh.webhostapp.com">link</a>
+- Obtención de un dominio con base de datos para poder acceder a todas mis tablas sin la necesidad de trabajar en localhost. <a href="hyperbruh.000webhostapp.com">HYPERBRUH</a>
