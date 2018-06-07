@@ -10,7 +10,9 @@ Documento entregado para revisión el día 7/06/2018
 - Diferenciación de rol el el fab de MainActivity
 
 ## MainActivity
-Vistas de invitado, usuario y admin, respectivamente
+Vistas de invitado, usuario y admin, respectivamente:
+
+El invitado no verá el fab, el usuario podrá mandar una sugerencia sobre la app para los administradores (pendiente de hacer) y los admin podrán añadir nuevas canciones.
 
 <img src="https://i.imgur.com/vGWl4Md.png" width="32%"> <img src="https://i.imgur.com/CnbDeYH.png" width="32%"> <img src="https://i.imgur.com/G7b5KV7.png" width="32%">
 
