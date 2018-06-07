@@ -7,7 +7,7 @@ participar en retos junto a otros usuarios para aportarse entre todos en el mund
 
 ## Memoria del Proyecto
 
-#### El desarrollo de este proyecto está recogido en distintos archivos markdown que voy actualizando cada dos semanas. 
+#### El desarrollo de este proyecto está recogido en distintos archivos markdown que voy actualizando cada dos semanas.
 
 1. [5 de Abril](Memoria/5Abril.md).
 
@@ -18,3 +18,5 @@ participar en retos junto a otros usuarios para aportarse entre todos en el mund
 4. [17 de Mayo](Memoria/17Mayo.md).
 
 5. [29 de Mayo](Memoria/29Mayo.md).
+
+6. [7 de junio](Memoria/7Junio.md).
