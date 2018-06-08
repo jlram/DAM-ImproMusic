@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     NavigationView navigationView;
 
+    static boolean desdeCancion;
+
     /**
      * Declaración del mediaPlayer que vamos a usar para reproducir cada canción segun su URL.
      */
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        desdeCancion = false;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

@@ -25,6 +25,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.josluis.impromusic.MainActivity.cancion;
+import static com.example.josluis.impromusic.MainActivity.desdeCancion;
+
 public class ListChallengeActivity extends AppCompatActivity {
 
     ListView listViewRetos;
@@ -94,7 +97,12 @@ public class ListChallengeActivity extends AppCompatActivity {
         /**
          * URL de nuestra consulta
          */
-        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaRetos";
+
+        if (desdeCancion) {
+            URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaRetosPorID&id_song=" + cancion.getID();
+        } else {
+            URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaRetos";
+        }
 
         consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
             @Override

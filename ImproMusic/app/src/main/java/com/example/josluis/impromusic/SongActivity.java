@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 import static com.example.josluis.impromusic.MainActivity.cancion;
+import static com.example.josluis.impromusic.MainActivity.desdeCancion;
 import static com.example.josluis.impromusic.MainActivity.mediaPlayer;
 
 public class SongActivity extends AppCompatActivity implements View.OnTouchListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener {
@@ -154,6 +155,7 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
                     mediaPlayer.pause();
                     buttonPlay.setImageResource(android.R.drawable.ic_media_play);
                     play = false;
+                    desdeCancion = true;
                 }
             }
         });
