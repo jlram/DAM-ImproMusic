@@ -11,46 +11,42 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="77dp"
-        android:layout_height="72dp"
+        android:layout_width="85dp"
+        android:layout_height="69dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="32dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/avatar1"
+        app:srcCompat="@drawable/avatar2"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
     <TextView
         android:id="@+id/headerText"
-        android:layout_width="119dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="29dp"
-        android:gravity="top|center"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="104dp"
         android:text="{username}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="@+id/headerType"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/headerType"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintLeft_toRightOf="@+id/imageView"
-        android:layout_marginLeft="0dp" />
+        tools:layout_constraintTop_creator="1" />
 
     <TextView
         android:id="@+id/headerType"
-        android:layout_width="0dp"
+        android:layout_width="241dp"
         android:layout_height="27dp"
-        android:gravity="center"
+        android:layout_marginBottom="4dp"
         android:text="{usertype}"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="@+id/imageView"
-        android:layout_marginBottom="16dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintRight_toRightOf="@+id/imageView"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
 </android.support.constraint.ConstraintLayout>

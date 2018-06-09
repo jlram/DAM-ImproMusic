@@ -152,8 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         /**
          * Muestra la información principal de nuestro usuario.
          */
-        nav_text.setText(usuario.getUsername() + "\n\nMiembro desde: "
-                        + usuario.getLog_date());
+        nav_text.setText(usuario.getUsername());
         nav_type.setText(usuario.getUser_type());
 
         /**
@@ -244,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        } else if (id == R.id.nav_config) {
 
         } else if (id == R.id.nav_sugerencias) {
-
+            startActivity(new Intent(MainActivity.this, ListSugerActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

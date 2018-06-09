@@ -69,8 +69,8 @@ public class EditProfileActivity extends AppCompatActivity {
         mTxtUser = (TextView) findViewById(R.id.textViewProfileUser);
         mTxtPass = (TextView) findViewById(R.id.textViewProfilePass);
 
-        mImageGhost = (ImageButton) findViewById(R.id.imageButtonGhost);
-        mImageRock = (ImageButton) findViewById(R.id.imageButtonRock);
+        mImageGhost = (ImageButton) findViewById(R.id.imageButtonGuitar);
+        mImageRock = (ImageButton) findViewById(R.id.imageButtonMusic);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         /**
@@ -99,13 +99,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
 
-                /*mImageGhost.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(EditProfileActivity.this, "xd", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                */
                 dialog.show();
 
                 //TODO 1 -> Hacer evento para las dos opciones que muestra nuestro layout. JSON.

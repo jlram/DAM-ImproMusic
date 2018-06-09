@@ -3,12 +3,12 @@ package com.example.josluis.impromusic.Tablas;
 public class Sugerencia {
 
     int ID;
-    int ID_musician;
+    String username;
     String content;
 
-    public Sugerencia(int ID, int ID_musician, String content) {
+    public Sugerencia(int ID, String username, String content) {
         this.ID = ID;
-        this.ID_musician = ID_musician;
+        this.username = username;
         this.content = content;
     }
 
@@ -20,12 +20,12 @@ public class Sugerencia {
         this.ID = ID;
     }
 
-    public int getID_musician() {
-        return ID_musician;
+    public String getUsername() {
+        return username;
     }
 
-    public void setID_musician(int ID_musician) {
-        this.ID_musician = ID_musician;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getContent() {
