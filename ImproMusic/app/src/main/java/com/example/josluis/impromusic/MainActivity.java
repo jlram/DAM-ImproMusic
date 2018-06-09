@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * Muestra la información principal de nuestro usuario.
          */
         nav_text.setText(usuario.getUsername());
-        nav_type.setText(usuario.getUser_type());
+        nav_type.setText("Usuario de tipo " + usuario.getUser_type());
 
         /**
          * Evento que al seleccionar una canción, nos dirigimos a una nueva actividad en la que
