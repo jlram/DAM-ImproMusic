@@ -166,4 +166,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="231dp" />
 
+    <ImageButton
+        android:id="@+id/buttonDelete"
+        android:layout_width="68dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:tint="#FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewCover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
 </android.support.constraint.ConstraintLayout>

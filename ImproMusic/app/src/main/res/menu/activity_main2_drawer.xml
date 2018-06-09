@@ -15,18 +15,18 @@
             android:icon="@android:drawable/ic_menu_edit"
             android:title="Editar perfil" />
 
-        <item
-            android:id="@+id/nav_config"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:title="Ajustes" />
+        <!--<item-->
+            <!--android:id="@+id/nav_config"-->
+            <!--android:icon="@android:drawable/ic_menu_preferences"-->
+            <!--android:title="Ajustes" />-->
     </group>
 
-    <item android:title="Social">
+    <item android:title="Administradores">
         <menu>
             <item
-                android:id="@+id/nav_compartir"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="Compartir" />
+                android:id="@+id/nav_sugerencias"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="Sugerencias" />
             <!--<item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

@@ -32,6 +32,7 @@
         <activity android:name=".CreateChallengeActivity" />
         <activity android:name=".ListChallengeActivity" />
         <activity android:name=".ChallengeActivity" />
+        <activity android:name=".ListSugerActivity"></activity>
     </application>
 
 </manifest>

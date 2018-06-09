@@ -9,13 +9,13 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.getBackground().setAlpha(200);
 
         //Método declarado abajo.
-        cargaCanciones();
+        //cargaCanciones();
 
         //Preparación del mediaPlayer
         preparaMediaPlayer();
@@ -112,9 +112,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+
         if(usuario.getUser_type().equals("admin")) {
             fab.setImageResource(R.drawable.add);
-
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -123,14 +123,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
 
         } else if (usuario.getUser_type().equals("normal")) {
+            navigationView.getMenu().findItem(R.id.nav_sugerencias).setVisible(false);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Contactar con los administradores", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    mandarSugerencia();
                 }
             });
         } else {
+            navigationView.getMenu().findItem(R.id.nav_sugerencias).setVisible(false);
             fab.setVisibility(View.INVISIBLE);
         }
 
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onPostResume() {
+        cargaCanciones();
         navigationView.getMenu().getItem(0).setChecked(true);
         preparaMediaPlayer();
         super.onPostResume();
@@ -239,9 +241,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
             }
 
-        } else if (id == R.id.nav_config) {
+//        } else if (id == R.id.nav_config) {
 
-        } else if (id == R.id.nav_compartir) {
+        } else if (id == R.id.nav_sugerencias) {
 
         }
 
@@ -256,6 +258,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * actividad principal.
      */
     public void cargaCanciones() {
+
+        if (adapter != null) {
+            adapter.clear();
+        }
+
 
         URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=consultaCanciones";
 
@@ -390,5 +397,62 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dialog.show();
 
     }
+
+    public void mandarSugerencia() {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+        dialog.setTitle("Manda una sugerencia a los administradores.");
+
+        Context context = MainActivity.this;
+        LinearLayout layout = new LinearLayout(context);
+        layout.setPadding(15, 15, 15, 15);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final EditText sugBox = new EditText(context);
+        sugBox.setHint("");
+        sugBox.setLines(4);
+        sugBox.setMaxLines(5);
+        sugBox.setGravity(Gravity.LEFT | Gravity.TOP);
+        sugBox.setHorizontallyScrolling(false);
+        layout.addView(sugBox);
+
+        dialog.setView(layout); // Again this is a set method, not add
+
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                if (sugBox.getText().toString().isEmpty()) {
+
+                    Toast.makeText(MainActivity.this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=mandarSugerencia" +
+                            "&username=" + usuario.getUsername() +
+                            "&content=" + sugBox.getText().toString();
+
+                    consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null,
+                            new Response.Listener<JSONArray>() {
+                                @Override
+                                public void onResponse(JSONArray response) {
+                                    Toast.makeText(MainActivity.this, "Sugerencia enviada. ¡Gracias por contribuir!"
+                                            , Toast.LENGTH_SHORT).show();
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(MainActivity.this, "Ha ocurrido un error enviando tu sugerencia."
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    queue.add(consulta);
+                }
+            }
+        });
+
+        dialog.show();
+
+    }
+
 
 }

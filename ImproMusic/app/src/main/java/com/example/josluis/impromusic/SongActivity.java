@@ -1,12 +1,14 @@
 package com.example.josluis.impromusic;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +18,17 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static com.example.josluis.impromusic.LoginActivity.usuario;
 import static com.example.josluis.impromusic.MainActivity.cancion;
@@ -36,6 +48,9 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
     ImageButton buttonCrearReto;
     ImageButton buttonVerRetos;
     ImageButton buttonLoop;
+    ImageButton buttonDelete;
+
+    RequestQueue queue;
 
     /**
      * Valor que contiene la duración de la canción en milisegundos.
@@ -65,9 +80,38 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
         cover = findViewById(R.id.imageViewCover);
         buttonLoop = findViewById(R.id.imageButtonLoop);
 
+        buttonDelete = findViewById(R.id.buttonDelete);
+
+        queue = Volley.newRequestQueue(this);
+
         preparaCancion();
         seekBar.setMax(99);
         seekBar.setOnTouchListener(this);
+
+        if (usuario.getUser_type().equals("admin")) {
+            buttonDelete.setVisibility(View.VISIBLE);
+        } else {
+            buttonDelete.setVisibility(View.INVISIBLE);
+        }
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new AlertDialog.Builder(SongActivity.this)
+                        .setTitle("Confirma esta acción")
+                        .setMessage("¿Deseas borrar la canción " + cancion.getName() + "?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                borrarCancion();
+                            }})
+                        .setNegativeButton("No", null).show();
+
+
+            }
+        });
 
         /**
          * Asigna los valores de la cancion a los distintos elementos de la acitividad:
@@ -239,4 +283,36 @@ public class SongActivity extends AppCompatActivity implements View.OnTouchListe
         super.onBackPressed();
         mediaPlayer.pause();
     }
+
+    public void borrarCancion() {
+
+        String URLConsulta = "http://hyperbruh.000webhostapp.com/API_JSON/usuarios.php?accion=eliminarCancion&id_song= " + cancion.getID();
+
+        JsonArrayRequest consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                    JSONObject c = response.getJSONObject(0);
+                    if (c.getString("estado").equals("true")) {
+                        Toast.makeText(SongActivity.this, "Canción eliminada con éxito", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(SongActivity.this, "No se ha podido eliminar la canción", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(SongActivity.this, "Ha ocurrido un error eliminando la canción.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(consulta);
+
+    }
+
 }
