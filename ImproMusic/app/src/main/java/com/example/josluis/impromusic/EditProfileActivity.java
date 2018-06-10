@@ -118,7 +118,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (mEditTextPWD.getText().toString().equals(mEditTextPWD2.getText().toString()) && !mEditTextPWD.getText().toString().trim().equals("")) {
                     //guardar cambios
                     URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=actualizar&username=" +
-                            usuario.getUsername() + "&password=" + mEditTextPWD.getText();
+                            mEditTextUser.getText().toString() + "&password=" + mEditTextPWD.getText().toString();
 
                     consulta = new JsonObjectRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONObject>() {
 
@@ -134,7 +134,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                     mEditTextPWD.setText("");
                                     mEditTextPWD2.setText("");
 
-                                    Toast.makeText(EditProfileActivity.this, "Ha ocurrido un error modificando el perfil.admin", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfileActivity.this, "Ha ocurrido un error modificando el perfil.", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -145,6 +145,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(EditProfileActivity.this, "Error Response", Toast.LENGTH_SHORT).show();
+                            System.out.println(error);
                         }
                     });
 
