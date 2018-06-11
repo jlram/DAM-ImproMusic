@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onPostResume() {
+        desdeCancion = false;
         cargaCanciones();
         navigationView.getMenu().getItem(0).setChecked(true);
         preparaMediaPlayer();

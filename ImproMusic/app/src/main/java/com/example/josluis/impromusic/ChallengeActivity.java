@@ -104,23 +104,27 @@ public class ChallengeActivity extends AppCompatActivity {
                 alertDialog.setView(input);
                 alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        if (input.getText().toString().isEmpty() || !input.getText().toString().contains("youtube.com")) {
+                            Toast.makeText(ChallengeActivity.this, "Introduce un enlace valido", Toast.LENGTH_SHORT).show();
+                        } else {
+                            URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=registrarParticipacion&chall=" + reto.getID() + "&music="
+                                    + usuario.getID() + "&date=2018-06-04&youtube=" + input.getText().toString();
+                            consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
+                                @Override
+                                public void onResponse(JSONArray response) {
 
-                        URLConsulta = "http://" + getResources().getString(R.string.localhost) + "/API_JSON/usuarios.php?accion=registrarParticipacion&chall=" + reto.getID() + "&music="
-                        + usuario.getID() + "&date=2018-06-04&youtube=" + input.getText().toString();
-                        consulta = new JsonArrayRequest(Request.Method.GET, URLConsulta, null, new Response.Listener<JSONArray>() {
-                            @Override
-                            public void onResponse(JSONArray response) {
+                                    Toast.makeText(ChallengeActivity.this, "¡Gracias por participar!", Toast.LENGTH_SHORT).show();
+                                    cargarPart();
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(ChallengeActivity.this, "Ya has participado en este reto.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            queue.add(consulta);
+                        }
 
-                                Toast.makeText(ChallengeActivity.this, "¡Gracias por participar!", Toast.LENGTH_SHORT).show();
-                                cargarPart();
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(ChallengeActivity.this, "Ya has participado en este reto.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        queue.add(consulta);
 
                     }
                 });// uncomment this line
