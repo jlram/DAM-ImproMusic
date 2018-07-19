@@ -1,5 +1,7 @@
 # DAM-ImproMusic
 
+### Calificación obtenida: 7
+
 Proyecto final para el CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM)
 
 Con esta aplicación Android intentaré ayudar a músicos en su experiencia practicando en casa, incluyendo bases musicales y la opción de poder
